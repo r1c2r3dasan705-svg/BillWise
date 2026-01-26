@@ -1,0 +1,174 @@
+/* Estilos do Cabeçalho - navegação principal com logo e menu */
+
+/* Cabeçalho fixo no topo com sombra */
+.header {
+    background-color: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-soft);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+/* Container flex para alinhar logo, menu e botões */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+/* Logo do site - lado esquerdo do header */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--gray-900);
+}
+
+/* Ícone do logo com gradiente */
+.logo-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 0.5rem;
+    font-weight: 700;
+}
+
+/* Menu de navegação - links horizontais */
+.nav {
+    display: flex;
+    gap: 2rem;
+}
+
+/* Botão de menu mobile - escondido em desktop */
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.35rem;
+}
+
+.menu-btn:hover { 
+    background-color: var(--gray-100); 
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--gray-600);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary);
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid rgba(11, 43, 71, 0.25);
+    background-color: transparent;
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.user-btn:hover {
+    background-color: rgba(11, 43, 71, 0.08);
+    color: var(--primary-dark);
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.skip-link:focus,
+.skip-link:active {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    background: white;
+    color: var(--gray-900);
+    z-index: 9999;
+    box-shadow: var(--shadow-md);
+    border-radius: 0.35rem;
+}
+
+/* Header Responsive */
+@media (max-width: 768px) {
+    .menu-btn { 
+        display: inline-flex; 
+    }
+    
+    .nav { 
+        display: none; 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        right: 0; 
+        background-color: white; 
+        padding: 1rem; 
+        box-shadow: var(--shadow); 
+        flex-direction: column; 
+        gap: 0.75rem; 
+        z-index: 150; 
+    }
+    
+    .nav.open { 
+        display: flex; 
+    }
+    
+    .nav-link { 
+        padding: 0.75rem 0; 
+    }
+    
+    .user-menu {
+        flex-wrap: wrap;
+    }
+}

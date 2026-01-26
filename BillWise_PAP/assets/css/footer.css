@@ -1,0 +1,220 @@
+/* Estilos do Rodapé - informações, links e redes sociais */
+
+/* Container principal do rodapé - fundo escuro */
+.site-footer {
+    background-color: #0f1724;
+    color: var(--gray-400);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Seção superior do rodapé com gradiente */
+.footer-content-top {
+    padding: 3rem 0 2.5rem;
+}
+
+/* Grid de 4 colunas - marca, links, recursos, suporte */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Coluna da marca - logo e descrição */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Logo no rodapé - texto branco */
+.footer-brand .logo {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Descrição da plataforma */
+.footer-brand > p {
+    margin-bottom: 1.5rem;
+    color: var(--gray-400);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Container de ícones de redes sociais */
+.social-links {
+    display: flex;
+    gap: 0.75rem;
+}
+
+/* Ícones circulares das redes sociais */
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-icon:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(11,92,255,0.12);
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-column h4 {
+    color: white;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.footer-column a {
+    display: block;
+    color: var(--gray-400);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.footer-column a:hover {
+    color: white;
+    padding-left: 0.5rem;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    padding: 2rem 0;
+    background: transparent;
+    border-top: 1px solid rgba(255,255,255,0.02);
+    border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+.newsletter-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.newsletter-text h3 {
+    color: white;
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+}
+
+.newsletter-text p {
+    color: var(--gray-400);
+    font-size: 0.9rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    min-width: 320px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.newsletter-form input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-form input:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: var(--primary);
+    box-shadow: 0 8px 24px rgba(11,92,255,0.06);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    padding: 2rem 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-bottom-content p {
+    color: var(--gray-500);
+    font-size: 0.85rem;
+}
+
+.footer-badges {
+    display: flex;
+    gap: 1rem;
+}
+
+.badge-footer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.85rem;
+    background-color: rgba(11,92,255,0.06);
+    border: 1px solid rgba(11,92,255,0.08);
+    border-radius: 0.4rem;
+    color: var(--gray-300);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* Footer Responsive */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .newsletter-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .newsletter-form {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .footer-badges {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

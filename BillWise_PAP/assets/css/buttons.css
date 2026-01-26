@@ -1,0 +1,142 @@
+/* Estilos de Botões - base e variantes com efeitos interativos */
+
+/* Estilo base para todos os botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.25rem;
+    border: none;
+    border-radius: var(--radius);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.08s ease, box-shadow 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+    text-decoration: none;
+    gap: 0.5rem;
+    position: relative;
+    overflow: visible;
+}
+
+/* Efeito ripple ao clicar (onda expansiva) */
+.btn:active { transform: translateY(1px); }
+
+/* Botão primário - azul com gradiente e sombra */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 8px 16px rgba(11, 43, 71, 0.18);
+    text-decoration: none;
+    border: none;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 20px rgba(11, 43, 71, 0.2);
+    background: var(--primary-dark);
+}
+
+.btn-secondary {
+    background: var(--gray-100);
+    color: var(--gray-800);
+    border: 1px solid var(--border-soft);
+    font-weight: 700;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid rgba(11, 43, 71, 0.2);
+    font-weight: 700;
+}
+
+.btn-outline:hover {
+    background: rgba(11, 43, 71, 0.06);
+    color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-large {
+    padding: 0.875rem 2rem;
+    font-size: 1.05rem;
+}
+
+.btn-primary-sm {
+    padding: 0.6rem 1rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-primary-sm:hover { background: var(--primary-dark); }
+
+/* Icon Buttons */
+.btn-icon { 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    padding: 0.5rem 0.75rem; 
+    border-radius: 0.35rem; 
+    transition: background-color 0.2s;
+}
+
+.btn-icon:hover {
+    background-color: var(--gray-100);
+}
+
+.btn-danger { 
+    background: var(--danger); 
+    color: white; 
+    border-radius: 0.35rem; 
+    padding: 0.5rem 0.75rem; 
+    border: none; 
+    cursor: pointer; 
+    transition: filter 0.2s;
+}
+
+.btn-danger:hover { 
+    filter: brightness(0.95); 
+}
+
+/* Disabled state for buttons */
+.btn[aria-disabled="true"],
+.btn[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Focus styles for accessibility */
+.btn:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Button Responsive */
+@media (max-width: 768px) {
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .btn-large {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+    }
+}

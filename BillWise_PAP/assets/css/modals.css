@@ -1,0 +1,447 @@
+/* Estilos de Modais - janelas sobrepondo a página com backdrop */
+
+/* Overlay de fundo - cobre toda a tela com blur */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(2,6,23,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal ativo - visível com animação de fade */
+.modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animação de fade in (surgimento gradual) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Container do conteúdo do modal - caixa branca centralizada */
+.modal-content {
+    background-color: white;
+    border-radius: 0.5rem;
+    width: 92%;
+    max-width: 640px;
+    box-shadow: 0 14px 40px rgba(2,6,23,0.08);
+    overflow: hidden;
+    animation: slideUp 0.22s ease-out;
+}
+
+/* Animação de slide up (desliza de baixo para cima) */
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container de notificações toast - canto superior direito */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    .toast {
+        min-width: 280px;
+        max-width: 420px;
+        background: #ffffff;
+        padding: 0.85rem 1.25rem;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(2,6,23,0.07);
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        pointer-events: all;
+        animation: slideInRight 0.22s ease-out;
+        border-left: 4px solid transparent;
+    }
+    .toast.success { border-left-color: var(--success); }
+    .toast.error { border-left-color: var(--danger); }
+    .toast.warning { border-left-color: var(--warning); }
+    .toast.info { border-left-color: var(--primary); }
+.toast.warning {
+    border-left-color: #f59e0b;
+    background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+}
+
+.toast.info {
+    border-left-color: #3b82f6;
+    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+}
+
+.toast-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.toast-content {
+    flex: 1;
+}
+
+.toast-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #1f2937;
+}
+
+.toast-message {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+
+.toast-close:hover {
+    color: #4b5563;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.toast.removing {
+    animation: slideOutRight 0.3s ease-in forwards;
+}
+
+/* Modal de Confirmação Personalizada */
+.confirm-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.confirm-modal.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.confirm-modal-content {
+    background: white;
+    border-radius: 0.5rem;
+    width: 90%;
+    max-width: 520px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 18px 48px rgba(2,6,23,0.08);
+    animation: scaleIn 0.22s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.confirm-modal-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.confirm-modal-icon.warning { background: rgba(245,158,11,0.12); color: var(--warning); }
+.confirm-modal-icon.danger { background: rgba(239,68,68,0.08); color: var(--danger); }
+.confirm-modal-icon.info { background: rgba(11,92,255,0.06); color: var(--primary); }
+
+.confirm-modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #1f2937;
+}
+
+.confirm-modal-message {
+    text-align: center;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.confirm-modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.confirm-modal-buttons button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 100px;
+}
+
+.confirm-modal-cancel {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.confirm-modal-cancel:hover {
+    background: #e5e7eb;
+}
+
+.confirm-modal-confirm {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.confirm-modal-confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+.confirm-modal-confirm.primary {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.confirm-modal-confirm.primary:hover {
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--gray-100);
+    background: transparent;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--gray-500);
+    cursor: pointer;
+    transition: color 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-btn:hover {
+    color: var(--gray-700);
+    background-color: rgba(15,23,42,0.04);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+/* Restricted Modal Styles */
+.restricted-modal-content {
+    max-width: 520px;
+}
+
+.restricted-modal-content .close-btn {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 10;
+}
+
+.restricted-content {
+    text-align: center;
+    padding: 2.5rem 2rem;
+}
+
+.restricted-icon {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.restricted-icon svg {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.restricted-content h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.restricted-content > p {
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.restricted-benefits {
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--gray-700);
+    font-size: 0.95rem;
+}
+
+.benefit-item:last-child {
+    margin-bottom: 0;
+}
+
+.benefit-item svg {
+    flex-shrink: 0;
+}
+
+.restricted-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.restricted-actions .btn {
+    flex: 1;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.restricted-actions .btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Modal Responsive */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-width: 450px;
+    }
+    
+    .restricted-modal-content {
+        max-width: 450px;
+    }
+    
+    .restricted-content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .restricted-content h3 {
+        font-size: 1.5rem;
+    }
+    
+    .restricted-actions {
+        flex-direction: column;
+    }
+    
+    .restricted-actions .btn {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content { 
+        width: 95%; 
+        max-width: 380px; 
+    }
+    
+    .restricted-modal-content {
+        max-width: 380px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .restricted-content h3 {
+        font-size: 1.25rem;
+    }
+    
+    .restricted-icon svg {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .restricted-benefits {
+        padding: 1rem;
+    }
+    
+    .benefit-item {
+        font-size: 0.9rem;
+    }
+}

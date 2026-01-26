@@ -1,0 +1,308 @@
+/* Estilos da Sidebar - navegação lateral para páginas autenticadas */
+
+/* Layout principal com sidebar fixa e conteúdo à direita */
+.dashboard-layout {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+/* Sidebar fixa no lado esquerdo - fundo escuro com gradiente */
+.sidebar {
+    width: 240px;
+    background: #0f1724; /* deep neutral */
+    color: #e6eef6;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    padding: 1.75rem 0;
+    box-shadow: 2px 0 18px rgba(2,6,23,0.06);
+    z-index: 1000;
+    transition: transform 0.22s ease;
+    overflow-y: auto;
+}
+
+/* Cabeçalho da sidebar - logo e informações do utilizador */
+.sidebar-header {
+    padding: 0 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Logo da sidebar com gradiente azul */
+.sidebar-logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f8fafc;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Card do utilizador - avatar e nome */
+.sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+}
+
+/* Avatar circular com inicial do utilizador */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f1724;
+    flex-shrink: 0;
+}
+
+.user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-role {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.sidebar-nav {
+    padding: 1.5rem 0;
+}
+
+.nav-section {
+    margin-bottom: 2rem;
+}
+
+.nav-section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.65);
+    padding: 0 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.nav-menu {
+    list-style: none;
+    .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.65rem 1.25rem;
+        color: rgba(255,255,255,0.9);
+        text-decoration: none;
+        transition: background 0.12s ease, color 0.12s ease;
+        position: relative;
+    }
+    .nav-link:hover {
+        background: rgba(255,255,255,0.03);
+        color: #ffffff;
+    }
+    .nav-link.active {
+        background: rgba(11,92,255,0.12);
+        color: white;
+        border-left: 3px solid var(--primary);
+    }
+    .nav-link.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--primary);
+    }
+}
+
+.nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #3b82f6, #06b6d4);
+}
+
+.nav-icon {
+    font-size: 1.25rem;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+.nav-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.nav-badge {
+    margin-left: auto;
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.sidebar-footer {
+    padding: 0 1.5rem;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+/* Main content area */
+.main-content-wrapper {
+    margin-left: 240px;
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+}
+
+.main-content-wrapper .main {
+    flex: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.main-content-wrapper .container {
+    padding-top: 2rem;
+}
+
+/* Mobile Toggle */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1001;
+    background: linear-gradient(135deg, #3b82f6, #06b6d4);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.sidebar-toggle:hover {
+    transform: scale(1.1);
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: none;
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        z-index: 1001;
+        background: var(--primary);
+        color: white;
+        border: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(2,6,23,0.12);
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.12s ease;
+    }
+    .sidebar-toggle:hover { transform: translateY(-2px); }
+.dashboard-layout .header {
+    display: none;
+}
+
+/* Scrollbar styling for sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}

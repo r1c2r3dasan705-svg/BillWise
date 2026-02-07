@@ -65,3 +65,4 @@ try {
         'error' => 'Erro ao atualizar perfil. Tente novamente.'
     ]);
 }
+

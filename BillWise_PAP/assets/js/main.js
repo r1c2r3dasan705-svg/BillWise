@@ -1,4 +1,4 @@
-﻿// JavaScript Principal do BillWise
+// JavaScript Principal do BillWise
 // Gere modais, formulários e interações das páginas
 
 // Funções auxiliares para abrir e fechar modais

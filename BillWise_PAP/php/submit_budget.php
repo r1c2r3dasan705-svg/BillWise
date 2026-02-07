@@ -42,3 +42,4 @@ try {
     echo json_encode(['success' => false, 'message' => 'Erro no servidor: ' . $e->getMessage()]);
 }
 ?>
+

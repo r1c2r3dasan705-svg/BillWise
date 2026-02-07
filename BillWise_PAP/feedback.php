@@ -1,12 +1,12 @@
 <?php
-// Verificar autenticação do utilizador
+// Verificar autenticaÃ§Ã£o do utilizador
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
 
-// Preparar dados do utilizador para pré-preencher o formulário
+// Preparar dados do utilizador para prÃ©-preencher o formulÃ¡rio
 $user_name = htmlentities($_SESSION['name']);
 $logged = true;
 ?>
@@ -130,7 +130,7 @@ $logged = true;
     <div class="feedback-hero">
         <div class="container">
             <h1>Feedback & Suporte</h1>
-            <p>A sua opinião ajuda-nos a melhorar! Partilhe sugestões, reporte problemas ou deixe um elogio.</p>
+            <p>A sua opiniÃ£o ajuda-nos a melhorar! Partilhe sugestÃµes, reporte problemas ou deixe um elogio.</p>
         </div>
     </div>
     
@@ -150,14 +150,14 @@ $logged = true;
                         <input type="radio" id="type-sugestao" name="tipo" value="sugestao" checked>
                         <label for="type-sugestao" class="type-label">
                             <div class="type-icon"></div>
-                            <strong>Sugestão</strong>
+                            <strong>SugestÃ£o</strong>
                         </label>
                     </div>
                     <div class="type-option">
                         <input type="radio" id="type-reclamacao" name="tipo" value="reclamacao">
                         <label for="type-reclamacao" class="type-label">
                             <div class="type-icon"></div>
-                            <strong>Reclamação</strong>
+                            <strong>ReclamaÃ§Ã£o</strong>
                         </label>
                     </div>
                     <div class="type-option">
@@ -245,9 +245,13 @@ $logged = true;
                 if (result.success) {
                     document.getElementById('feedback-form-container').style.display = 'none';
                     document.getElementById('success-msg').classList.add('show');
-                    Notifications.success('Feedback enviado com sucesso! Obrigado pela sua contribuição.');
+                    if (result.email_sent === false) {
+                        Notifications.warning(result.message || 'Feedback guardado, mas o email nao foi enviado.');
+                    } else {
+                        Notifications.success('Feedback enviado com sucesso! Obrigado pela sua contribuicao.');
+                    }
                     
-                    // Redirecionar após 3 segundos
+                    // Redirecionar apÃ³s 3 segundos
                     setTimeout(() => {
                         window.location.href = 'index.php';
                     }, 3000);
@@ -265,3 +269,5 @@ $logged = true;
 </body>
 </html>
 </html>
+
+

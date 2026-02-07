@@ -93,3 +93,4 @@ if (!isset($_SESSION['user_id'])) {
     <?php include 'php/footer.php'; ?>
 </body>
 </html>
+

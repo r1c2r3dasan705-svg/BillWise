@@ -65,3 +65,4 @@ try {
         'error' => 'Erro ao alterar senha. Tente novamente.'
     ]);
 }
+

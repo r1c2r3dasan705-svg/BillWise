@@ -34,7 +34,7 @@ try {
     $stmt->execute([$_SESSION['user_id'], $amount, $category, $date, $description]);
     $id = $pdo->lastInsertId();
 
-    // Atualizar gasto do orÃ§amento da mesma categoria, se existir
+    // Atualizar gasto do orçamento da mesma categoria, se existir
     $stmt = $pdo->prepare('UPDATE orcamentos SET gasto = GREATEST(0, gasto + ?) WHERE utilizador_id = ? AND nome = ?');
     $stmt->execute([$amount, $_SESSION['user_id'], $category]);
 
@@ -55,3 +55,5 @@ try {
     echo json_encode(['success' => false, 'message' => 'Erro no servidor: ' . $e->getMessage()]);
 }
 ?>
+
+

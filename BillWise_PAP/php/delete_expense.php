@@ -41,7 +41,7 @@ try {
     $stmt = $pdo->prepare("DELETE FROM despesas WHERE id = ?");
     $stmt->execute([$expense_id]);
 
-    // Atualizar gasto do orÃ§amento da mesma categoria, se existir
+    // Atualizar gasto do orçamento da mesma categoria, se existir
     $stmt = $pdo->prepare('UPDATE orcamentos SET gasto = GREATEST(0, gasto - ?) WHERE utilizador_id = ? AND nome = ?');
     $stmt->execute([$expense['valor'], $user_id, $expense['categoria']]);
     
@@ -57,3 +57,5 @@ try {
         'error' => 'Erro ao eliminar despesa'
     ]);
 }
+
+

@@ -1,6 +1,5 @@
-/* Estilos de Modais - janelas sobrepondo a página com backdrop */
+/* Modal and toast styles */
 
-/* Overlay de fundo - cobre toda a tela com blur */
 .modal {
     display: none;
     position: fixed;
@@ -8,77 +7,85 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(2,6,23,0.5);
+    background-color: rgba(2, 6, 23, 0.5);
     z-index: 1000;
     align-items: center;
     justify-content: center;
 }
 
-/* Modal ativo - visível com animação de fade */
 .modal.active {
     display: flex;
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Animação de fade in (surgimento gradual) */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* Container do conteúdo do modal - caixa branca centralizada */
 .modal-content {
-    background-color: white;
+    background-color: #fff;
     border-radius: 0.5rem;
     width: 92%;
     max-width: 640px;
-    box-shadow: 0 14px 40px rgba(2,6,23,0.08);
+    box-shadow: 0 14px 40px rgba(2, 6, 23, 0.08);
     overflow: hidden;
     animation: slideUp 0.22s ease-out;
 }
 
-/* Animação de slide up (desliza de baixo para cima) */
 @keyframes slideUp {
-    from { 
+    from {
         opacity: 0;
         transform: translateY(20px);
     }
-    to { 
+    to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* Container de notificações toast - canto superior direito */
 .toast-container {
     position: fixed;
     top: 20px;
-    .toast {
-        min-width: 280px;
-        max-width: 420px;
-        background: #ffffff;
-        padding: 0.85rem 1.25rem;
-        border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(2,6,23,0.07);
-        display: flex;
-        align-items: center;
-        gap: 0.85rem;
-        pointer-events: all;
-        animation: slideInRight 0.22s ease-out;
-        border-left: 4px solid transparent;
-    }
-    .toast.success { border-left-color: var(--success); }
-    .toast.error { border-left-color: var(--danger); }
-    .toast.warning { border-left-color: var(--warning); }
-    .toast.info { border-left-color: var(--primary); }
+    right: 20px;
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    min-width: 280px;
+    max-width: 420px;
+    background: #fff;
+    padding: 0.85rem 1.25rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.07);
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    pointer-events: all;
+    animation: slideInRight 0.22s ease-out;
+    border-left: 4px solid transparent;
+}
+
+.toast.success {
+    border-left-color: var(--success);
+}
+
+.toast.error {
+    border-left-color: var(--danger);
+}
+
 .toast.warning {
     border-left-color: #f59e0b;
-    background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+    background: linear-gradient(135deg, #fff 0%, #fffbeb 100%);
 }
 
 .toast.info {
     border-left-color: #3b82f6;
-    background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+    background: linear-gradient(135deg, #fff 0%, #eff6ff 100%);
 }
 
 .toast-icon {
@@ -144,7 +151,6 @@
     animation: slideOutRight 0.3s ease-in forwards;
 }
 
-/* Modal de Confirmação Personalizada */
 .confirm-modal {
     display: none;
     position: fixed;
@@ -153,7 +159,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 10000;
+    z-index: 11000;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(5px);
@@ -161,23 +167,23 @@
 
 .confirm-modal.active {
     display: flex;
-    animation: fadeIn 0.3s ease-in-out;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 .confirm-modal-content {
-    background: white;
+    background: #fff;
     border-radius: 0.5rem;
     width: 90%;
     max-width: 520px;
     padding: 1.25rem 1.5rem;
-    box-shadow: 0 18px 48px rgba(2,6,23,0.08);
+    box-shadow: 0 18px 48px rgba(2, 6, 23, 0.08);
     animation: scaleIn 0.22s ease-out;
 }
 
 @keyframes scaleIn {
     from {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
@@ -196,9 +202,20 @@
     font-size: 2rem;
 }
 
-.confirm-modal-icon.warning { background: rgba(245,158,11,0.12); color: var(--warning); }
-.confirm-modal-icon.danger { background: rgba(239,68,68,0.08); color: var(--danger); }
-.confirm-modal-icon.info { background: rgba(11,92,255,0.06); color: var(--primary); }
+.confirm-modal-icon.warning {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--warning);
+}
+
+.confirm-modal-icon.danger {
+    background: rgba(239, 68, 68, 0.08);
+    color: var(--danger);
+}
+
+.confirm-modal-icon.info {
+    background: rgba(11, 92, 255, 0.06);
+    color: var(--primary);
+}
 
 .confirm-modal-title {
     font-size: 1.5rem;
@@ -213,6 +230,7 @@
     color: #6b7280;
     line-height: 1.6;
     margin-bottom: 2rem;
+    white-space: pre-line;
 }
 
 .confirm-modal-buttons {
@@ -242,7 +260,7 @@
 
 .confirm-modal-confirm {
     background: linear-gradient(135deg, #ef4444, #dc2626);
-    color: white;
+    color: #fff;
 }
 
 .confirm-modal-confirm:hover {
@@ -290,14 +308,13 @@
 
 .close-btn:hover {
     color: var(--gray-700);
-    background-color: rgba(15,23,42,0.04);
+    background-color: rgba(15, 23, 42, 0.04);
 }
 
 .modal-body {
     padding: 1.5rem;
 }
 
-/* Restricted Modal Styles */
 .restricted-modal-content {
     max-width: 520px;
 }
@@ -385,29 +402,28 @@
     height: 20px;
 }
 
-/* Modal Responsive */
 @media (max-width: 768px) {
     .modal-content {
         width: 95%;
         max-width: 450px;
     }
-    
+
     .restricted-modal-content {
         max-width: 450px;
     }
-    
+
     .restricted-content {
         padding: 2rem 1.5rem;
     }
-    
+
     .restricted-content h3 {
         font-size: 1.5rem;
     }
-    
+
     .restricted-actions {
         flex-direction: column;
     }
-    
+
     .restricted-actions .btn {
         width: 100%;
         min-width: auto;
@@ -415,32 +431,32 @@
 }
 
 @media (max-width: 480px) {
-    .modal-content { 
-        width: 95%; 
-        max-width: 380px; 
+    .modal-content {
+        width: 95%;
+        max-width: 380px;
     }
-    
+
     .restricted-modal-content {
         max-width: 380px;
     }
-    
+
     .modal-header h2 {
         font-size: 1.25rem;
     }
-    
+
     .restricted-content h3 {
         font-size: 1.25rem;
     }
-    
+
     .restricted-icon svg {
         width: 60px;
         height: 60px;
     }
-    
+
     .restricted-benefits {
         padding: 1rem;
     }
-    
+
     .benefit-item {
         font-size: 0.9rem;
     }

@@ -49,7 +49,7 @@ try {
     ");
     $stmt->execute([$valor, $categoria, $data_despesa, $descricao, $expense_id, $user_id]);
 
-    // Atualizar gasto nos orÃ§amentos afetados
+    // Atualizar gasto nos orçamentos afetados
     if ($expense['categoria'] === $categoria) {
         $delta = $valor - $expense['valor'];
         if ($delta != 0) {
@@ -82,3 +82,5 @@ try {
         'error' => 'Erro ao atualizar despesa'
     ]);
 }
+
+

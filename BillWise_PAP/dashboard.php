@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // Restringe acesso a utilizadores autenticados
 session_start();
 if (!isset($_SESSION['user_id'])) {

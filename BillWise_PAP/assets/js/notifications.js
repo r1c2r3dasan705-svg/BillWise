@@ -40,7 +40,7 @@ const Notifications = {
                 <div class="toast-title">${titles[type]}</div>
                 <div class="toast-message">${message}</div>
             </div>
-            <button class="toast-close" onclick="this.parentElement.remove()">×</button>
+            <button class="toast-close" onclick="this.parentElement.remove()">&times;</button>
         `;
         
         this.container.appendChild(toast);
@@ -210,3 +210,5 @@ window.showAlert = function(message, type = 'info') {
 window.showConfirm = function(message, callback) {
     ConfirmModal.confirm(message, callback);
 };
+
+

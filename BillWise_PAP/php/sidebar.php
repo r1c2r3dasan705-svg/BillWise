@@ -106,6 +106,18 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <span class="nav-text">Feedback</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="ajuda.php" class="nav-link <?php echo $current_page === 'ajuda.php' ? 'active' : ''; ?>">
+                        <span class="nav-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4"/>
+                                <circle cx="12" cy="17.5" r="0.75" fill="currentColor" stroke="none"/>
+                            </svg>
+                        </span>
+                        <span class="nav-text">Ajuda</span>
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -171,3 +183,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+

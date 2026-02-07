@@ -52,3 +52,4 @@ try {
         'error' => 'Erro ao eliminar conta. Tente novamente.'
     ]);
 }
+

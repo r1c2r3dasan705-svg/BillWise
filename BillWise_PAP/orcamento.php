@@ -41,7 +41,15 @@ if (!isset($_SESSION['user_id'])) {
                     <form id="budget-form">
                         <div class="form-group">
                             <label for="name">Categoria</label>
-                            <input type="text" id="name" name="name" required>
+                            <select id="name" name="name" required>
+                                <option value="" disabled selected>Selecione uma categoria</option>
+                                <option value="Alimentação">Alimentação</option>
+                                <option value="Transporte">Transporte</option>
+                                <option value="Saúde">Saúde</option>
+                                <option value="Entretenimento">Entretenimento</option>
+                                <option value="Educação">Educação</option>
+                                <option value="Outros">Outros</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="limit">Limite (€)</label>
@@ -66,3 +74,4 @@ if (!isset($_SESSION['user_id'])) {
     <?php include 'php/footer.php'; ?>
 </body>
 </html>
+

@@ -1,32 +1,33 @@
-<?php
-// API de registo - cria nova conta de utilizador e inicia sessão automaticamente
+﻿<?php
+// API de registo - cria nova conta de utilizador e inicia sessÃ£o automaticamente
 header('Content-Type: application/json');
 require_once 'config.php';
+require_once 'admin/admin_access.php';
 
 // Receber dados JSON do cliente
 $data = json_decode(file_get_contents('php://input'), true);
 if (!$data) {
-    echo json_encode(['success' => false, 'message' => 'Dados inválidos']);
+    echo json_encode(['success' => false, 'message' => 'Dados invÃ¡lidos']);
     exit;
 }
 
-// Extrair e validar campos obrigatórios
+// Extrair e validar campos obrigatÃ³rios
 $name = trim($data['nome'] ?? '');
 $email = trim($data['email'] ?? '');
 $password = $data['senha'] ?? '';
 
 if (!$name || !$email || !$password) {
-    echo json_encode(['success' => false, 'message' => 'Campos obrigatórios em falta']);
+    echo json_encode(['success' => false, 'message' => 'Campos obrigatÃ³rios em falta']);
     exit;
 }
 
 try {
     $pdo = getPDO();
-    // Verificar se email já está registado (evitar duplicados)
+    // Verificar se email jÃ¡ estÃ¡ registado (evitar duplicados)
     $stmt = $pdo->prepare('SELECT id FROM utilizadores WHERE email = ?');
     $stmt->execute([$email]);
     if ($stmt->fetch()) {
-        echo json_encode(['success' => false, 'message' => 'Email já em uso']);
+        echo json_encode(['success' => false, 'message' => 'Email jÃ¡ em uso']);
         exit;
     }
 
@@ -35,12 +36,14 @@ try {
     $stmt = $pdo->prepare('INSERT INTO utilizadores (nome, email, senha_hash, criado_em) VALUES (?, ?, ?, NOW())');
     $stmt->execute([$name, $email, $hash]);
 
-    // Iniciar sessão automaticamente após registo bem-sucedido
+    // Iniciar sessÃ£o automaticamente apÃ³s registo bem-sucedido
     $userId = $pdo->lastInsertId();
     if ($userId) {
         if (session_status() === PHP_SESSION_NONE) session_start();
         $_SESSION['user_id'] = $userId;
         $_SESSION['name'] = $name;
+        $_SESSION['email'] = normalizeEmail($email);
+        $_SESSION['is_admin'] = ($_SESSION['email'] === ADMIN_EMAIL);
     }
 
     echo json_encode(['success' => true, 'name' => $name]);
@@ -49,3 +52,4 @@ try {
     echo json_encode(['success' => false, 'message' => 'Erro no servidor: ' . $e->getMessage()]);
 }
 ?>
+

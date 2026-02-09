@@ -1,12 +1,12 @@
-<?php
-// Verificar autenticaÃ§Ã£o do utilizador
+﻿<?php
+// Verificar autenticaÃƒÂ§ÃƒÂ£o do utilizador
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
 
-// Preparar dados do utilizador para prÃ©-preencher o formulÃ¡rio
+// Preparar dados do utilizador para prÃƒÂ©-preencher o formulÃƒÂ¡rio
 $user_name = htmlentities($_SESSION['name']);
 $logged = true;
 ?>
@@ -41,7 +41,7 @@ $logged = true;
         }
         
         .feedback-container {
-            max-width: 800px;
+            max-width: 1040px;
             margin: 0 auto 3rem;
             padding: 0 1rem;
         }
@@ -55,7 +55,7 @@ $logged = true;
         
         .feedback-types {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 1rem;
             margin-bottom: 2rem;
         }
@@ -73,12 +73,13 @@ $logged = true;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 1.5rem 1rem;
+            padding: 1.85rem 1rem;
             border: 2px solid var(--gray-200);
             border-radius: var(--radius-lg);
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
+            min-height: 140px;
         }
         
         .type-option input[type="radio"]:checked + .type-label {
@@ -251,7 +252,7 @@ $logged = true;
                         Notifications.success('Feedback enviado com sucesso! Obrigado pela sua contribuicao.');
                     }
                     
-                    // Redirecionar apÃ³s 3 segundos
+                    // Redirecionar apÃƒÂ³s 3 segundos
                     setTimeout(() => {
                         window.location.href = 'index.php';
                     }, 3000);
@@ -269,5 +270,9 @@ $logged = true;
 </body>
 </html>
 </html>
+
+
+
+
 
 

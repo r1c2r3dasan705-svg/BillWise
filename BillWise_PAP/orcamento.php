@@ -71,7 +71,6 @@ if (!isset($_SESSION['user_id'])) {
 
     <script src="assets/js/notifications.js?v=1"></script>
     <script src="assets/js/main.js"></script>
-    <?php include 'php/footer.php'; ?>
 </body>
 </html>
 

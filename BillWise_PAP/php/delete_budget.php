@@ -1,6 +1,6 @@
 <?php
 // API para eliminar orçamento - verifica permissões antes de apagar
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
 session_start();
 
 // Verificar autenticação
@@ -53,4 +53,5 @@ try {
         'error' => 'Erro ao eliminar orçamento'
     ]);
 }
+
 

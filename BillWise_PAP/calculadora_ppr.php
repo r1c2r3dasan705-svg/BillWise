@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 // Calculadora de Plano Poupança Reforma (PPR)
 // Simula o valor acumulado até à reforma com juros compostos
 session_start();
@@ -22,7 +23,9 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="dashboard-layout">
-        <?php include 'php/sidebar.php'; ?>
+        <?php
+header('Content-Type: text/html; charset=UTF-8');
+include 'php/sidebar.php'; ?>
         <div class="main-content-wrapper">
             <main class="main">
                 <div class="container">
@@ -81,7 +84,7 @@ if (!isset($_SESSION['user_id'])) {
 
     <script src="assets/js/notifications.js?v=1"></script>
     <script src="assets/js/main.js"></script>
-    <?php include 'php/footer.php'; ?>
 </body>
 </html>
+
 

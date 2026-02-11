@@ -1,12 +1,13 @@
-﻿<?php
-// Verificar autenticaÃƒÂ§ÃƒÂ£o do utilizador
+<?php
+header('Content-Type: text/html; charset=UTF-8');
+// Verificar autenticação do utilizador
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
 
-// Preparar dados do utilizador para prÃƒÂ©-preencher o formulÃƒÂ¡rio
+// Preparar dados do utilizador para pré-preencher o formulário
 $user_name = htmlentities($_SESSION['name']);
 $logged = true;
 ?>
@@ -125,13 +126,15 @@ $logged = true;
 </head>
 <body>
     <div class="dashboard-layout">
-        <?php include 'php/sidebar.php'; ?>
+        <?php
+header('Content-Type: text/html; charset=UTF-8');
+include 'php/sidebar.php'; ?>
         <div class="main-content-wrapper">
     
     <div class="feedback-hero">
         <div class="container">
             <h1>Feedback & Suporte</h1>
-            <p>A sua opiniÃ£o ajuda-nos a melhorar! Partilhe sugestÃµes, reporte problemas ou deixe um elogio.</p>
+            <p>A sua opinião ajuda-nos a melhorar! Partilhe sugestões, reporte problemas ou deixe um elogio.</p>
         </div>
     </div>
     
@@ -151,14 +154,14 @@ $logged = true;
                         <input type="radio" id="type-sugestao" name="tipo" value="sugestao" checked>
                         <label for="type-sugestao" class="type-label">
                             <div class="type-icon"></div>
-                            <strong>SugestÃ£o</strong>
+                            <strong>Sugestão</strong>
                         </label>
                     </div>
                     <div class="type-option">
                         <input type="radio" id="type-reclamacao" name="tipo" value="reclamacao">
                         <label for="type-reclamacao" class="type-label">
                             <div class="type-icon"></div>
-                            <strong>ReclamaÃ§Ã£o</strong>
+                            <strong>Reclamação</strong>
                         </label>
                     </div>
                     <div class="type-option">
@@ -181,7 +184,9 @@ $logged = true;
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" id="nome" name="nome" 
-                           value="<?php echo $logged ? htmlentities($_SESSION['name']) : ''; ?>" 
+                           value="<?php
+header('Content-Type: text/html; charset=UTF-8');
+echo $logged ? htmlentities($_SESSION['name']) : ''; ?>" 
                            required>
                 </div>
                 
@@ -189,7 +194,9 @@ $logged = true;
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" 
-                           value="<?php echo $logged && isset($_SESSION['email']) ? htmlentities($_SESSION['email']) : ''; ?>" 
+                           value="<?php
+header('Content-Type: text/html; charset=UTF-8');
+echo $logged && isset($_SESSION['email']) ? htmlentities($_SESSION['email']) : ''; ?>" 
                            required>
                 </div>
                 
@@ -252,7 +259,7 @@ $logged = true;
                         Notifications.success('Feedback enviado com sucesso! Obrigado pela sua contribuicao.');
                     }
                     
-                    // Redirecionar apÃƒÂ³s 3 segundos
+                    // Redirecionar após 3 segundos
                     setTimeout(() => {
                         window.location.href = 'index.php';
                     }, 3000);
@@ -270,6 +277,7 @@ $logged = true;
 </body>
 </html>
 </html>
+
 
 
 

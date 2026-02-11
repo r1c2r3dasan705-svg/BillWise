@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
 // Pagina de ajuda para utilizadores autenticados
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -117,7 +118,9 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="dashboard-layout">
-        <?php include 'php/sidebar.php'; ?>
+        <?php
+header('Content-Type: text/html; charset=UTF-8');
+include 'php/sidebar.php'; ?>
         <div class="main-content-wrapper">
             <main class="main">
                 <section class="help-hero">
@@ -240,3 +243,4 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 </body>
 </html>
+

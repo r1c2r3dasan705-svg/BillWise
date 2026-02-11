@@ -1,4 +1,4 @@
-// JavaScript Principal do BillWise
+﻿// JavaScript Principal do BillWise
 // Gere modais, formulários e interações das páginas
 
 // Funções auxiliares para abrir e fechar modais
@@ -80,7 +80,8 @@ if (loginForm) {
                 credentials: 'same-origin',
                 body: JSON.stringify({ email, senha: password })
             });
-            const data = await res.json();
+            const raw = await res.text();
+            const data = JSON.parse(raw.replace(/^\uFEFF/, ''));
             if (data.success) {
                 // Redirecionar para o painel após login bem-sucedido
                 closeModal(authModal);
@@ -90,7 +91,7 @@ if (loginForm) {
             }
         } catch (err) {
             console.error(err);
-            Notifications.error('Não foi possível contactar o servidor. Verifique sua conexão.', 'Erro de Conexão');
+            Notifications.error('O servidor respondeu com erro inesperado. Tente novamente.', 'Erro');
         }
     });
 }
@@ -111,7 +112,8 @@ if (registerForm) {
                 credentials: 'same-origin',
                 body: JSON.stringify({ nome: name, email, senha: password })
             });
-            const data = await res.json();
+            const raw = await res.text();
+            const data = JSON.parse(raw.replace(/^\uFEFF/, ''));
             if (data.success) {
                 Notifications.success('Conta criada com sucesso! Agora pode fazer login.', 'Bem-vindo!');
                 // Alternar para o formulário de login
@@ -123,7 +125,7 @@ if (registerForm) {
             }
         } catch (err) {
             console.error(err);
-            Notifications.error('Não foi possível contactar o servidor. Verifique sua conexão.', 'Erro de Conexão');
+            Notifications.error('O servidor respondeu com erro inesperado. Tente novamente.', 'Erro');
         }
     });
 }
@@ -241,7 +243,7 @@ if (calcBtn) {
                         </div>
                     </div>
                     <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                        <p style="font-size: 0.9rem; margin-bottom: 0.25rem;">📊 Retorno Total: <strong>${returnPercentage.toFixed(1)}%</strong></p>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.25rem;">€ Retorno Total: <strong>${returnPercentage.toFixed(1)}%</strong></p>
                         <p style="font-size: 0.85rem; opacity: 0.9;">Em ${years} anos com ${rate}% de retorno anual</p>
                     </div>
                 </div>

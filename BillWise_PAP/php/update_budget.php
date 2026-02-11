@@ -1,6 +1,6 @@
 <?php
 // API para editar orçamento - atualiza nome e limite mantendo gasto atual
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
 session_start();
 
 // Verificar autenticação
@@ -70,4 +70,5 @@ try {
         'error' => 'Erro ao atualizar orçamento'
     ]);
 }
+
 

@@ -1,6 +1,6 @@
 <?php
 // API para alterar senha do utilizador autenticado
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
 session_start();
 
 // Verificar autenticação
@@ -65,4 +65,5 @@ try {
         'error' => 'Erro ao alterar senha. Tente novamente.'
     ]);
 }
+
 

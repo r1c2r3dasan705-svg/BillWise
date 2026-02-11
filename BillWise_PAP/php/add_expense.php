@@ -1,6 +1,6 @@
 <?php
 // API para adicionar nova despesa
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
 require_once 'config.php';
 session_start();
 
@@ -55,5 +55,6 @@ try {
     echo json_encode(['success' => false, 'message' => 'Erro no servidor: ' . $e->getMessage()]);
 }
 ?>
+
 
 

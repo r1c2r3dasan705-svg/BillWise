@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
+
 // Página de gestão de despesas
 // Permite adicionar, editar e eliminar despesas
 session_start();
@@ -23,7 +25,9 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="dashboard-layout">
-        <?php include 'php/sidebar.php'; ?>
+        <?php
+
+include 'php/sidebar.php'; ?>
         <div class="main-content-wrapper">
             <main class="main">
                 <div class="container">
@@ -92,4 +96,5 @@ if (!isset($_SESSION['user_id'])) {
     <script src="assets/js/main.js"></script>
 </body>
 </html>
+
 

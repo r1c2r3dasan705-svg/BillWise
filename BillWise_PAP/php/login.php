@@ -1,23 +1,25 @@
-﻿<?php
-// API de autenticaÃ§Ã£o - verifica credenciais e inicia sessÃ£o do utilizador
-header('Content-Type: application/json');
+<?php
+// API de autenticação - verifica credenciais e inicia sessão do utilizador
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+header('Content-Type: application/json; charset=UTF-8');
 require_once 'config.php';
-require_once 'admin/admin_access.php';
-session_start();
+require_once __DIR__ . '/../admin/acesso_admin.php';
 
 // Receber dados JSON do cliente
 $data = json_decode(file_get_contents('php://input'), true);
 if (!$data) {
-    echo json_encode(['success' => false, 'message' => 'Dados invÃ¡lidos']);
+    echo json_encode(['success' => false, 'message' => 'Dados inválidos']);
     exit;
 }
 
-// Extrair e validar campos obrigatÃ³rios
+// Extrair e validar campos obrigatórios
 $email = trim($data['email'] ?? '');
 $password = $data['senha'] ?? '';
 
 if (!$email || !$password) {
-    echo json_encode(['success' => false, 'message' => 'Campos obrigatÃ³rios em falta']);
+    echo json_encode(['success' => false, 'message' => 'Campos obrigatórios em falta']);
     exit;
 }
 
@@ -28,13 +30,13 @@ try {
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
-    // Verificar se utilizador existe e senha estÃ¡ correta (comparaÃ§Ã£o segura com hash)
+    // Verificar se utilizador existe e senha está correta (comparação segura com hash)
     if (!$user || !password_verify($password, $user['senha_hash'])) {
-        echo json_encode(['success' => false, 'message' => 'Email ou senha invÃ¡lidos']);
+        echo json_encode(['success' => false, 'message' => 'Email ou senha inválidos']);
         exit;
     }
 
-    // AutenticaÃ§Ã£o bem-sucedida - criar sessÃ£o
+    // Autenticação bem-sucedida - criar sessão
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['name'] = $user['nome'];
     $_SESSION['email'] = normalizeEmail($user['email']);
@@ -45,5 +47,5 @@ try {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Erro no servidor: ' . $e->getMessage()]);
 }
-?>
+
 

@@ -1,4 +1,5 @@
 <?php
+
 // Página Inicial (Landing Page) do BillWise
 // Apresentação da plataforma para visitantes não autenticados
 // Utilizadores autenticados são redirecionados para o dashboard
@@ -33,7 +34,9 @@ $panel_open_login = true;
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <?php include 'php/header.php'; ?>
+    <?php
+
+include 'php/header.php'; ?>
     <main id="main" class="main">
         <div class="container">
             <!-- Hero Intro Section -->
@@ -45,16 +48,30 @@ $panel_open_login = true;
                                 <h1>Domine as suas finanças com o <span class="highlight">BillWise</span></h1>
                                 <p class="hero-subtitle">A solução completa para gestão financeira pessoal. Controle despesas, defina orçamentos e simule investimentos.</p>
                                 <div class="hero-actions">
-                                    <?php if ($panel_open_login): ?>
+                                    <?php
+
+if ($panel_open_login): ?>
                                         <a href="#" class="btn btn-primary open-login">Começar Agora</a>
-                                    <?php else: ?>
-                                        <a href="<?php echo $panel_link; ?>" class="btn btn-primary">Ir para o Painel</a>
-                                    <?php endif; ?>
-                                    <?php if ($panel_open_login): ?>
+                                    <?php
+
+else: ?>
+                                        <a href="<?php
+
+echo $panel_link; ?>" class="btn btn-primary">Ir para o Painel</a>
+                                    <?php
+
+endif; ?>
+                                    <?php
+
+if ($panel_open_login): ?>
                                         <a href="#" class="btn btn-outline open-restricted">Aprender Mais</a>
-                                    <?php else: ?>
+                                    <?php
+
+else: ?>
                                         <a href="orcamento.php" class="btn btn-outline">Aprender Mais</a>
-                                    <?php endif; ?>
+                                    <?php
+
+endif; ?>
                                 </div>
                             </div>
                             <div class="hero-visual">
@@ -243,11 +260,17 @@ $panel_open_login = true;
                                 </div>
                             </div>
 
-                            <?php if ($panel_open_login): ?>
+                            <?php
+
+if ($panel_open_login): ?>
                                 <a href="#" class="btn btn-primary open-login">Comece Agora Mesmo</a>
-                            <?php else: ?>
+                            <?php
+
+else: ?>
                                 <a href="dashboard.php" class="btn btn-primary">Ir para o Painel</a>
-                            <?php endif; ?>
+                            <?php
+
+endif; ?>
                         </div>
                         <div class="why-choose-visual">
                             <div class="circular-visual">
@@ -262,7 +285,9 @@ $panel_open_login = true;
         </div>
     </main>
 
-    <?php include 'php/footer.php'; ?>
+    <?php
+
+include 'php/footer.php'; ?>
 
     <!-- AUTH MODAL -->
     <div id="auth-modal" class="modal">
@@ -271,12 +296,14 @@ $panel_open_login = true;
                 <h2 id="auth-title">Entrar</h2>
                 <button class="close-btn" id="auth-close">&times;</button>
             </div>
+            <!-- Modal Login (Default) -->
             <div class="modal-body" style="padding:1.5rem;">
                 <form id="login-form" style="display:block;">
                     <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
                     <div class="form-group"><label for="password">Senha</label><input type="password" id="password" name="password" required></div>
                     <div class="form-actions"><button class="btn btn-secondary" type="button" id="show-register">Ainda não tem conta?</button><button class="btn btn-primary" type="submit">Entrar</button></div>
                 </form>
+                <!-- Modal de Registro (Escondido) -->
                 <form id="register-form" style="display:none;">
                     <div class="form-group"><label for="nome">Nome</label><input type="text" id="nome" name="nome" required></div>
                     <div class="form-group"><label for="reg-email">Email</label><input type="email" id="reg-email" name="email" required></div>
@@ -344,5 +371,6 @@ $panel_open_login = true;
     <script src="assets/js/main.js"></script>
 </body>
 </html>
+
 
 

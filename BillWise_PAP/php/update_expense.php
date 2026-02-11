@@ -1,6 +1,6 @@
 <?php
 // API para editar despesa existente - verifica propriedade antes de permitir edição
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
 session_start();
 
 // Verificar autenticação
@@ -82,5 +82,6 @@ try {
         'error' => 'Erro ao atualizar despesa'
     ]);
 }
+
 
 

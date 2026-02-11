@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: text/html; charset=UTF-8');
+
 // Página de Definições da Conta
 // Permite ao utilizador editar perfil, alterar password e eliminar conta
 session_start();
@@ -134,7 +136,9 @@ try {
 </head>
 <body>
     <div class="dashboard-layout">
-        <?php include 'php/sidebar.php'; ?>
+        <?php
+
+include 'php/sidebar.php'; ?>
         <div class="main-content-wrapper">
     
     <div class="settings-hero">
@@ -313,5 +317,6 @@ try {
 </body>
 </html>
 </html>
+
 
 

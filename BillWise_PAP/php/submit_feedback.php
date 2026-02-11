@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
 session_start();
 
 function smtp_read_line($socket)
@@ -165,3 +165,4 @@ try {
         'error' => 'Erro ao salvar. Tente novamente.',
     ]);
 }
+

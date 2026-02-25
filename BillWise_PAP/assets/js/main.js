@@ -1,4 +1,4 @@
-﻿// JavaScript Principal do BillWise
+// JavaScript Principal do BillWise
 // Gere modais, formulários e interações das páginas
 
 // Funções auxiliares para abrir e fechar modais
@@ -80,8 +80,7 @@ if (loginForm) {
                 credentials: 'same-origin',
                 body: JSON.stringify({ email, senha: password })
             });
-            const raw = await res.text();
-            const data = JSON.parse(raw.replace(/^\uFEFF/, ''));
+            const data = await res.json();
             if (data.success) {
                 // Redirecionar para o painel após login bem-sucedido
                 closeModal(authModal);
@@ -91,7 +90,7 @@ if (loginForm) {
             }
         } catch (err) {
             console.error(err);
-            Notifications.error('O servidor respondeu com erro inesperado. Tente novamente.', 'Erro');
+            Notifications.error('Não foi possível contactar o servidor. Verifique sua conexão.', 'Erro de Conexão');
         }
     });
 }
@@ -112,8 +111,7 @@ if (registerForm) {
                 credentials: 'same-origin',
                 body: JSON.stringify({ nome: name, email, senha: password })
             });
-            const raw = await res.text();
-            const data = JSON.parse(raw.replace(/^\uFEFF/, ''));
+            const data = await res.json();
             if (data.success) {
                 Notifications.success('Conta criada com sucesso! Agora pode fazer login.', 'Bem-vindo!');
                 // Alternar para o formulário de login
@@ -125,12 +123,12 @@ if (registerForm) {
             }
         } catch (err) {
             console.error(err);
-            Notifications.error('O servidor respondeu com erro inesperado. Tente novamente.', 'Erro');
+            Notifications.error('Não foi possível contactar o servidor. Verifique sua conexão.', 'Erro de Conexão');
         }
     });
 }
 
-// RESTRICTED Modal handlers
+// GESTÃO DE ACESSO RESTRITO - Modal para utilizadores não autenticados
 const restrictedModal = document.getElementById('restricted-modal');
 const restrictedCloseBtn = document.getElementById('restricted-close');
 const restrictedLoginBtn = document.getElementById('restricted-login');
@@ -138,7 +136,7 @@ const restrictedRegisterBtn = document.getElementById('restricted-register');
 
 console.log('Restricted modal element:', restrictedModal);
 
-// Open restricted modal for links with .open-restricted class
+// Adicionar event listeners aos botões que abrem o modal de acesso restrito
 const openRestrictedBtns = document.querySelectorAll('.open-restricted');
 console.log('Found', openRestrictedBtns.length, 'open-restricted buttons');
 if (openRestrictedBtns && openRestrictedBtns.length) {
@@ -156,13 +154,13 @@ if (restrictedLoginBtn) {
     restrictedLoginBtn.addEventListener('click', () => {
         closeModal(restrictedModal);
         showModal(authModal);
-        // Show login form
+        // Mostrar formulário de login
         if (loginForm && registerForm && authTitle) {
             loginForm.style.display = 'block';
             registerForm.style.display = 'none';
             authTitle.textContent = 'Entrar';
         }
-        // focus the first input for quick keyboard access
+        // focar no campo email para facilitar navegação por teclado
         const emailInput = document.getElementById('email');
         if (emailInput) setTimeout(() => emailInput.focus(), 50);
     });
@@ -172,19 +170,19 @@ if (restrictedRegisterBtn) {
     restrictedRegisterBtn.addEventListener('click', () => {
         closeModal(restrictedModal);
         showModal(authModal);
-        // Show register form
+        // Mostrar formulário de registo
         if (loginForm && registerForm && authTitle) {
             loginForm.style.display = 'none';
             registerForm.style.display = 'block';
             authTitle.textContent = 'Registar';
         }
-        // focus the first input for quick keyboard access
+        // focar no campo nome para facilitar navegação por teclado
         const nomeInput = document.getElementById('nome');
         if (nomeInput) setTimeout(() => nomeInput.focus(), 50);
     });
 }
 
-// Close modals when clicking outside
+//Fechar modais ao clicar fora do conteúdo
 window.addEventListener('click', (e) => {
     if (e.target === authModal) closeModal(authModal);
     if (e.target === restrictedModal) closeModal(restrictedModal);
@@ -243,7 +241,7 @@ if (calcBtn) {
                         </div>
                     </div>
                     <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.1); border-radius: 8px;">
-                        <p style="font-size: 0.9rem; margin-bottom: 0.25rem;">€ Retorno Total: <strong>${returnPercentage.toFixed(1)}%</strong></p>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.25rem;">📊 Retorno Total: <strong>${returnPercentage.toFixed(1)}%</strong></p>
                         <p style="font-size: 0.85rem; opacity: 0.9;">Em ${years} anos com ${rate}% de retorno anual</p>
                     </div>
                 </div>
@@ -287,7 +285,7 @@ async function renderBudgets() {
     const budgetList = document.getElementById('budget-list');
     if (!budgetList) return;
     let budgets = [];
-    // Fetch from server (auth required)
+    // Procurar orçamentos no servidor
     try {
         const res = await fetch('php/get_budgets.php', { credentials: 'same-origin' });
         const json = await res.json();
@@ -326,26 +324,26 @@ async function renderBudgets() {
         `;
         budgetList.appendChild(div);
         
-        // edit handler
+        // Edit handler
         div.querySelector('.btn-edit').addEventListener('click', () => {
             // Populate form with budget data
             document.getElementById('name').value = b.name;
             document.getElementById('limit').value = b.limit;
             
-            // Store edit ID in form
+            // Guardar ID do orçamento a editar no dataset do formulário
             budgetForm.dataset.editId = b.id;
             
-            // Scroll to form
+            // Scroll para o formulário e focar no campo nome
             budgetForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
             document.getElementById('name').focus();
         });
         
-        // delete handler
+        // Apagar handler
         div.querySelector('.btn-danger').addEventListener('click', async () => {
             ConfirmModal.delete(
                 'Tem certeza que deseja eliminar este orçamento?',
                 async () => {
-                    // Try to delete from server first
+                    // Tentar eliminar do servidor primeiro
                     try {
                         const res = await fetch('php/delete_budget.php', {
                             method: 'POST',
@@ -363,7 +361,7 @@ async function renderBudgets() {
                         console.warn('Erro ao eliminar do servidor, a usar localStorage');
                     }
                     
-                    // Fallback to localStorage
+                    // Fallback para eliminar usando localStorage
                     const budgetList = JSON.parse(localStorage.getItem('budgets') || '[]');
                     const newList = budgetList.filter(budget => budget.id !== b.id);
                     localStorage.setItem('budgets', JSON.stringify(newList));
@@ -375,7 +373,7 @@ async function renderBudgets() {
     });
 }
 
-// Despesas page: carregar do servidor quando possivel
+// Página de despesas - Adicionar nova despesa
 const openAddExpenseBtn = document.getElementById('open-add-expense');
 const expenseModal = document.getElementById('expense-modal');
 const expenseForm = document.getElementById('expense-form');
@@ -383,7 +381,7 @@ const expenseItems = document.getElementById('expense-items') || document.queryS
 
 if (openAddExpenseBtn) {
     openAddExpenseBtn.addEventListener('click', () => {
-        // Reset form to add mode
+        // Resetar formulário e remover qualquer ID de edição anterior
         expenseForm.reset();
         delete expenseForm.dataset.editId;
         const modalTitle = expenseModal.querySelector('.modal-header h2');
@@ -392,7 +390,7 @@ if (openAddExpenseBtn) {
     });
 }
 
-// Close modal when a close button is clicked
+// Fechar modal de despesa ao clicar no botão de fechar
 document.querySelectorAll('.close-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
         const modal = e.target.closest('.modal');
@@ -411,7 +409,7 @@ if (expenseForm) {
         const editId = expenseForm.dataset.editId;
         const isEditing = !!editId;
 
-        // Try to post/update to server using Portuguese keys
+        // Tentar enviar para o servidor
         try {
             const endpoint = isEditing ? 'php/update_expense.php' : 'php/add_expense.php';
             const payload = isEditing 
@@ -431,7 +429,7 @@ if (expenseForm) {
                 delete expenseForm.dataset.editId;
                 closeModal(expenseModal);
                 
-                // Reset modal title
+                // Resetar título do modal para o estado de adicionar nova despesa
                 const modalTitle = expenseModal.querySelector('.modal-header h2');
                 modalTitle.textContent = 'Adicionar Despesa';
                 
@@ -450,7 +448,7 @@ async function renderExpenses() {
     const items = document.getElementById('expense-items') || expenseItems;
     if (!items) return;
     let expenses = [];
-    // Fetch from server
+    // Procurar despesas no servidor
     try {
         const res = await fetch('php/get_expenses.php', { credentials: 'same-origin' });
         const json = await res.json();
@@ -489,30 +487,30 @@ async function renderExpenses() {
         `;
         items.appendChild(div);
 
-        // edit handler
+        // Editar handler
         div.querySelector('.btn-edit').addEventListener('click', () => {
-            // Populate form with expense data
+            // Preencher formulário com dados da despesa
             document.getElementById('amount').value = exp.amount;
             document.getElementById('category').value = exp.category;
             document.getElementById('date').value = exp.date;
             document.getElementById('description').value = exp.description;
             
-            // Change form to edit mode
+            // Mudar título do modal para indicar que estamos a editar uma despesa
             const modalTitle = expenseModal.querySelector('.modal-header h2');
             modalTitle.textContent = 'Editar Despesa';
             
-            // Store edit ID in form
+            // Guardar ID da despesa a editar no dataset do formulário para usar na submissão
             expenseForm.dataset.editId = exp.id;
             
             showModal(expenseModal);
         });
 
-        // delete handler
+        // Apagar handler
         div.querySelector('.btn-danger').addEventListener('click', async () => {
             ConfirmModal.delete(
                 'Tem certeza que deseja eliminar esta despesa?',
                 async () => {
-                    // Try to delete from server first
+                    // Tentar eliminar do servidor primeiro
                     try {
                         const res = await fetch('php/delete_expense.php', {
                             method: 'POST',
@@ -530,7 +528,7 @@ async function renderExpenses() {
                         console.warn('Erro ao eliminar do servidor, a usar localStorage');
                     }
                     
-                    // Fallback to localStorage
+                    // Fallback para eliminar usando localStorage
                     const expList = JSON.parse(localStorage.getItem('expenses') || '[]');
                     const newList = expList.filter(e => e.id !== exp.id);
                     localStorage.setItem('expenses', JSON.stringify(newList));
@@ -542,11 +540,11 @@ async function renderExpenses() {
     });
 }
 
-// Init
+// Inicializar renderização de orçamentos e despesas
 renderBudgets();
 renderExpenses();
 
-// Simple nav highlighting for pages
+// Navegação - Destacar link ativo
 const loc = window.location.pathname.split('/').pop();
 if (loc) {
     document.querySelectorAll('.nav-link').forEach(a => {
@@ -556,7 +554,7 @@ if (loc) {
     });
 }
 
-// Close mobile nav when nav link clicked
+// Fechar menu mobile ao clicar num link
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
         const nav = link.closest('.nav-container').querySelector('.nav');
@@ -564,7 +562,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Newsletter form handler
+// Formulário de newsletter - Feedback visual ao subscrever
 const newsletterForm = document.getElementById('newsletter-form');
 if (newsletterForm) {
     newsletterForm.addEventListener('submit', (e) => {
@@ -573,12 +571,12 @@ if (newsletterForm) {
         const button = newsletterForm.querySelector('button');
         const originalText = button.textContent;
         
-        // Show success state
+        // Mostrar feedback de subscrição bem-sucedida
         button.textContent = '✓ Subscrito!';
         button.style.backgroundColor = 'var(--success)';
         input.disabled = true;
         
-        // Reset after 2 seconds
+        //Resetar formulário após 2 segundos
         setTimeout(() => {
             input.value = '';
             input.disabled = false;
@@ -588,7 +586,7 @@ if (newsletterForm) {
     });
 }
 
-// Smooth scroll for internal links
+// Scroll suave para âncoras internas, exceto para modais de login/registo
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -602,7 +600,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for animations
+// ANIMAÇÕES - Usar Intersection Observer para animar elementos ao aparecerem no viewport
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -617,14 +615,14 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Add fade-in animations to cards
+// Adicionar animação a cards e estatísticas
 document.querySelectorAll('.action-card, .stat-card, .stat-inline').forEach((el, index) => {
     el.style.opacity = '0';
     el.style.animationDelay = `${index * 0.1}s`;
     observer.observe(el);
 });
 
-// Header scroll effect (guarded)
+// Scroll suave e sombra no header ao rolar a página
 const header = document.querySelector('.header');
 let lastScrollTop = 0;
 if (header) {
@@ -641,7 +639,7 @@ if (header) {
     });
 }
 
-// Add hover effects to footer links
+// Adicionar hover suave aos links do footer
 const footerLinks = document.querySelectorAll('.footer-column a');
 if (footerLinks && footerLinks.length) {
     footerLinks.forEach(link => {
@@ -650,7 +648,7 @@ if (footerLinks && footerLinks.length) {
     });
 }
 
-// Counter animation for stats
+// Contador animado para números das estatísticas
 function animateCounter(element, target, duration = 2000) {
     let current = 0;
     const increment = target / (duration / 16);
@@ -664,7 +662,7 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
-// Trigger counter animations when stats are visible
+// Animar números das estatísticas quando aparecerem no viewport
 const statNumbers = document.querySelectorAll('.stat-number');
 let hasAnimated = false;
 
@@ -688,13 +686,13 @@ document.querySelector('.hero-stats-inline')?.querySelectorAll('.stat-number').f
     statsObserver.observe(el);
 });
 
-// Hero cards animation
+// Animação de entrada para os cards do hero
 document.querySelectorAll('.hero-card').forEach((card, index) => {
     card.style.opacity = '0';
     card.style.animation = `fadeInUp ${0.6 + index * 0.2}s ease-out forwards`;
 });
 
-// Add interactive hover to hero cards
+// Adicionar hover suave aos cards do hero
 document.querySelectorAll('.hero-card').forEach(card => {
     card.addEventListener('mouseenter', function() {
         this.style.transform = 'translateY(-12px) scale(1.02)';
@@ -704,10 +702,10 @@ document.querySelectorAll('.hero-card').forEach(card => {
     });
 });
 
-}); // End DOMContentLoaded
+}); // Fim do DOMContentLoaded
 
 // ========================================
-// 🎨 ANIMAÇÕES CATCHY - Scroll Animations
+// 🎨 ANIMAÇÕES CATCHY - Animações de Scroll
 // ========================================
 
 // Intersection Observer para animações ao scroll

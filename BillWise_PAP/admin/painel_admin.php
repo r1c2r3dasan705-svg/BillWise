@@ -216,7 +216,7 @@ echo $stats['budgets']; ?></p>
                                         <th>Nome</th>
                                         <th>Email</th>
                                         <th>Criado em</th>
-                                        <th>Acoes</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>

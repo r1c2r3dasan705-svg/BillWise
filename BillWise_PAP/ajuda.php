@@ -1,5 +1,4 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
 // Pagina de ajuda para utilizadores autenticados
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -118,15 +117,13 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="dashboard-layout">
-        <?php
-header('Content-Type: text/html; charset=UTF-8');
-include 'php/sidebar.php'; ?>
+        <?php include 'php/sidebar.php'; ?>
         <div class="main-content-wrapper">
             <main class="main">
                 <section class="help-hero">
                     <div class="container">
                         <h1>Centro de Ajuda</h1>
-                        <p>Aqui encontras como funciona cada area do BillWise. Segue os passos rapidos de cada cartao para usares tudo sem duvidas.</p>
+                        <p>Aqui encontras como funciona cada área do BillWise. Segue os passos rápidos de cada cartão para usares tudo sem dúvidas.</p>
                     </div>
                 </section>
 
@@ -142,11 +139,11 @@ include 'php/sidebar.php'; ?>
                                 </svg>
                             </span>
                             <h2 class="help-title">Painel</h2>
-                            <p class="help-text">Mostra o resumo financeiro do mes: despesas, orcamento restante, progresso e ultimos registos.</p>
+                            <p class="help-text">Mostra o resumo financeiro do mês: despesas, orçamento restante, progresso e últimos registos.</p>
                             <ol class="help-steps">
                                 <li>Abre o menu <strong>Painel</strong>.</li>
                                 <li>Consulta os indicadores no topo.</li>
-                                <li>Usa os atalhos para abrir despesas e orcamentos.</li>
+                                <li>Usa os atalhos para abrir despesas e orçamentos.</li>
                             </ol>
                         </article>
 
@@ -162,7 +159,7 @@ include 'php/sidebar.php'; ?>
                             <ol class="help-steps">
                                 <li>Clica em <strong>Adicionar Despesa</strong>.</li>
                                 <li>Preenche valor, categoria e data.</li>
-                                <li>Guarda para atualizar o total e os graficos.</li>
+                                <li>Guarda para atualizar o total e os gráficos.</li>
                             </ol>
                         </article>
 
@@ -174,10 +171,10 @@ include 'php/sidebar.php'; ?>
                                     <circle cx="12" cy="12" r="2"></circle>
                                 </svg>
                             </span>
-                            <h2 class="help-title">Orcamentos</h2>
+                            <h2 class="help-title">Orçamentos</h2>
                             <p class="help-text">Define limites por categoria e acompanha o gasto em tempo real com barra de progresso.</p>
                             <ol class="help-steps">
-                                <li>Cria um orcamento por categoria.</li>
+                                <li>Cria um orçamento por categoria.</li>
                                 <li>Define limite mensal.</li>
                                 <li>Revê a percentagem usada e ajusta quando preciso.</li>
                             </ol>
@@ -193,9 +190,9 @@ include 'php/sidebar.php'; ?>
                                 </svg>
                             </span>
                             <h2 class="help-title">Calculadora PPR</h2>
-                            <p class="help-text">Simula poupanca para reforma com capital inicial, reforco mensal, taxa anual e anos.</p>
+                            <p class="help-text">Simula poupança para reforma com capital inicial, reforço mensal, taxa anual e anos.</p>
                             <ol class="help-steps">
-                                <li>Introduz os dados de simulacao.</li>
+                                <li>Introduz os dados de simulação.</li>
                                 <li>Clica em <strong>Calcular</strong>.</li>
                                 <li>Compara total investido e retorno estimado.</li>
                             </ol>
@@ -223,10 +220,10 @@ include 'php/sidebar.php'; ?>
                                     <path d="M12 1v6m0 10v6m11-11h-6M7 12H1"></path>
                                 </svg>
                             </span>
-                            <h2 class="help-title">Definicoes da conta</h2>
+                            <h2 class="help-title">Definições da conta</h2>
                             <p class="help-text">Atualiza dados pessoais, altera palavra-passe e gere a tua conta.</p>
                             <ol class="help-steps">
-                                <li>Abre <strong>Definicoes</strong>.</li>
+                                <li>Abre <strong>Definições</strong>.</li>
                                 <li>Atualiza nome, email e password.</li>
                                 <li>Usa eliminar conta apenas se for definitivo.</li>
                             </ol>
@@ -243,4 +240,3 @@ include 'php/sidebar.php'; ?>
     </div>
 </body>
 </html>
-

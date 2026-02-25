@@ -126,9 +126,7 @@ $logged = true;
 </head>
 <body>
     <div class="dashboard-layout">
-        <?php
-header('Content-Type: text/html; charset=UTF-8');
-include 'php/sidebar.php'; ?>
+        <?php include 'php/sidebar.php'; ?>
         <div class="main-content-wrapper">
     
     <div class="feedback-hero">
@@ -184,9 +182,7 @@ include 'php/sidebar.php'; ?>
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" id="nome" name="nome" 
-                           value="<?php
-header('Content-Type: text/html; charset=UTF-8');
-echo $logged ? htmlentities($_SESSION['name']) : ''; ?>" 
+                           value="<?php echo $logged ? htmlentities($_SESSION['name']) : ''; ?>" 
                            required>
                 </div>
                 
@@ -194,9 +190,7 @@ echo $logged ? htmlentities($_SESSION['name']) : ''; ?>"
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" 
-                           value="<?php
-header('Content-Type: text/html; charset=UTF-8');
-echo $logged && isset($_SESSION['email']) ? htmlentities($_SESSION['email']) : ''; ?>" 
+                           value="<?php echo $logged && isset($_SESSION['email']) ? htmlentities($_SESSION['email']) : ''; ?>" 
                            required>
                 </div>
                 

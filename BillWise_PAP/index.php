@@ -142,7 +142,7 @@ endif; ?>
             <section class="features-section">
                 <div class="container">
                     <div class="section-header">
-                        <h2>As suas finanças, simplificadas</h2>
+                        <h2>As suas finanças simplificadas</h2>
                         <p>Desvalore tudo em funcionalidades que o libertam transferir a sua educação com o clima</p>
                     </div>
                         <div class="features-grid">
@@ -314,7 +314,7 @@ include 'php/footer.php'; ?>
         </div>
     </div>
 
-    <!-- RESTRICTED ACCESS MODAL -->
+    <!-- Modal de Acesso Restrito -->
     <div id="restricted-modal" class="modal">
         <div class="modal-content restricted-modal-content">
             <button class="close-btn" id="restricted-close">&times;</button>

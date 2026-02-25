@@ -1,35 +1,31 @@
-/* Estilos da Sidebar - navegação lateral para páginas autenticadas */
+/* Sidebar layout for authenticated pages */
 
-/* Layout principal com sidebar fixa e conteúdo à direita */
 .dashboard-layout {
     display: flex;
     min-height: 100vh;
     background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
-/* Sidebar fixa no lado esquerdo - fundo escuro com gradiente */
 .sidebar {
     width: 240px;
-    background: #0f1724; /* deep neutral */
+    background: #0f1724;
     color: #e6eef6;
     position: fixed;
     left: 0;
     top: 0;
     height: 100vh;
     padding: 1.75rem 0;
-    box-shadow: 2px 0 18px rgba(2,6,23,0.06);
+    box-shadow: 2px 0 18px rgba(2, 6, 23, 0.06);
     z-index: 1000;
     transition: transform 0.22s ease;
     overflow-y: auto;
 }
 
-/* Cabeçalho da sidebar - logo e informações do utilizador */
 .sidebar-header {
     padding: 0 1.5rem 2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Logo da sidebar com gradiente azul */
 .sidebar-logo {
     font-size: 1.25rem;
     font-weight: 700;
@@ -39,23 +35,21 @@
     margin-bottom: 0.5rem;
 }
 
-/* Card do utilizador - avatar e nome */
 .sidebar-user {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-top: 1rem;
     padding: 0.5rem;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     border-radius: 8px;
 }
 
-/* Avatar circular com inicial do utilizador */
 .user-avatar {
     width: 40px;
     height: 40px;
     border-radius: 8px;
-    background: rgba(255,255,255,0.06);
+    background: rgba(255, 255, 255, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,7 +67,7 @@
 .user-name {
     font-size: 0.95rem;
     font-weight: 600;
-    color: white;
+    color: #ffffff;
     display: block;
     white-space: nowrap;
     overflow: hidden;
@@ -98,45 +92,47 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
     padding: 0 1.25rem;
     margin-bottom: 0.5rem;
 }
 
 .nav-menu {
     list-style: none;
-    .nav-link {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.65rem 1.25rem;
-        color: rgba(255,255,255,0.9);
-        text-decoration: none;
-        transition: background 0.12s ease, color 0.12s ease;
-        position: relative;
-    }
-    .nav-link:hover {
-        background: rgba(255,255,255,0.03);
-        color: #ffffff;
-    }
-    .nav-link.active {
-        background: rgba(11,92,255,0.12);
-        color: white;
-        border-left: 3px solid var(--primary);
-    }
-    .nav-link.active::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: var(--primary);
-    }
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: background 0.12s ease, color 0.12s ease;
+    position: relative;
+}
+
+.sidebar .nav-link:link,
+.sidebar .nav-link:visited {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+}
+
+.nav-link.active {
+    background: rgba(11, 92, 255, 0.12);
+    color: #ffffff;
+    border-left: 3px solid var(--primary);
 }
 
 .nav-link.active::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -170,7 +166,7 @@
 .nav-badge {
     margin-left: auto;
     background: #ef4444;
-    color: white;
+    color: #ffffff;
     font-size: 0.7rem;
     padding: 0.15rem 0.5rem;
     border-radius: 10px;
@@ -178,10 +174,9 @@
 }
 
 .sidebar-footer {
-    padding: 0 1.5rem;
+    padding: 1.5rem;
     margin-top: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 1.5rem;
 }
 
 .logout-btn {
@@ -206,7 +201,6 @@
     color: #ef4444;
 }
 
-/* Main content area */
 .main-content-wrapper {
     margin-left: 240px;
     flex: 1;
@@ -226,29 +220,28 @@
     padding-top: 2rem;
 }
 
-/* Mobile Toggle */
 .sidebar-toggle {
     display: none;
     position: fixed;
     top: 1rem;
     left: 1rem;
     z-index: 1001;
-    background: linear-gradient(135deg, #3b82f6, #06b6d4);
-    color: white;
+    background: var(--primary);
+    color: #ffffff;
     border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 1.5rem;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.12);
+    font-size: 0.95rem;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease;
+    transition: transform 0.12s ease;
 }
 
 .sidebar-toggle:hover {
-    transform: scale(1.1);
+    transform: translateY(-2px);
 }
 
 .sidebar-overlay {
@@ -258,38 +251,38 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(2, 6, 23, 0.45);
     z-index: 999;
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
-    .sidebar-toggle {
-        display: none;
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        z-index: 1001;
-        background: var(--primary);
-        color: white;
-        border: none;
-        width: 44px;
-        height: 44px;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 6px 18px rgba(2,6,23,0.12);
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.12s ease;
+    .sidebar {
+        width: min(82vw, 300px);
+        transform: translateX(-100%);
     }
-    .sidebar-toggle:hover { transform: translateY(-2px); }
-.dashboard-layout .header {
-    display: none;
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content-wrapper {
+        margin-left: 0;
+    }
+
+    .main-content-wrapper .container {
+        padding-top: 4.5rem;
+    }
+
+    .sidebar-toggle {
+        display: inline-flex;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
 }
 
-/* Scrollbar styling for sidebar */
+/* Scrollbar styling */
 .sidebar::-webkit-scrollbar {
     width: 6px;
 }
@@ -306,4 +299,3 @@
 .sidebar::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.3);
 }
-

@@ -1,5 +1,5 @@
 <?php
-// API para buscar todas as despesas do utilizador autenticado - ordenadas por data
+// API para procurar todas as despesas do utilizador autenticado - ordenadas por data
 header('Content-Type: application/json; charset=UTF-8');
 require_once 'config.php';
 session_start();
@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 
 try {
     $pdo = getPDO();
-    // Buscar despesas do utilizador ordenadas por data (mais recentes primeiro)
+    // Procurar despesas do utilizador ordenadas por data (mais recentes primeiro)
     $stmt = $pdo->prepare('SELECT id, valor, categoria, data, descricao, criado_em FROM despesas WHERE utilizador_id = ? ORDER BY data DESC, id DESC');
     $stmt->execute([$_SESSION['user_id']]);
     $expenses = $stmt->fetchAll();

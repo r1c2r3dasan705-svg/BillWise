@@ -1,11 +1,11 @@
 ﻿<?php
-// Componente de sidebar - navegacao lateral para paginas autenticadas
+// Componente de sidebar - navegação lateral para paginas autenticadas
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
     exit;
 }
 
-// Preparar dados do utilizador para exibicao
+// Preparar dados do utilizador para exibição
 $user_name = htmlentities($_SESSION['name']);
 $user_initials = strtoupper(substr($user_name, 0, 1));
 $session_email = strtolower(trim($_SESSION['email'] ?? ''));
@@ -137,7 +137,7 @@ $nav_base = isset($sidebar_base) ? $sidebar_base : '';
                 </li>
                 <?php if ($is_admin): ?>
                 <li class="nav-item">
-                    <a href="<?php echo $nav_base; ?>admin/painel_admin.php" class="nav-link <?php echo $current_page === 'painel_admin.php' ? 'active' : ''; ?>">
+                    <a href="<?php echo $nav_base; ?>admin/backend.php" class="nav-link <?php echo $current_page === 'backend.php' ? 'active' : ''; ?>">
                         <span class="nav-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -145,7 +145,7 @@ $nav_base = isset($sidebar_base) ? $sidebar_base : '';
                                 <path d="M9 21V9"/>
                             </svg>
                         </span>
-                        <span class="nav-text">Painel Admin</span>
+                        <span class="nav-text">Backend</span>
                     </a>
                 </li>
                 <?php endif; ?>
@@ -194,7 +194,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
-
 
 

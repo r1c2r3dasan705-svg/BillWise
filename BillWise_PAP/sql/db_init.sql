@@ -1,5 +1,4 @@
--- Script SQL para criar a base de dados BillWise (em Português)
--- Execute em MySQL (phpMyAdmin ou mysql CLI)
+-- Script SQL para criar a base de dados BillWise
 
 CREATE DATABASE IF NOT EXISTS billwise_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE billwise_db;

@@ -1,6 +1,4 @@
 <?php
-header('Content-Type: text/html; charset=UTF-8');
-
 // Restringe acesso a utilizadores autenticados
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -93,9 +91,7 @@ try {
 </head>
 <body>
     <div class="dashboard-layout">
-        <?php
-
-include 'php/sidebar.php'; ?>
+        <?php include 'php/sidebar.php'; ?>
         <div class="main-content-wrapper">
             <main id="main-content" class="main">
                 <div class="container">
@@ -103,9 +99,7 @@ include 'php/sidebar.php'; ?>
                     <section class="dashboard-hero">
                         <div class="dashboard-hero-inner">
                             <div class="hero-greeting">
-                                <h1>Bem-vindo de volta, <span class="user-name"><?php
-
-echo $user_name; ?></span>!</h1>
+                                <h1>Bem-vindo de volta, <span class="user-name"><?php echo $user_name; ?></span>!</h1>
                                 <p>Aqui está um resumo da sua jornada financeira</p>
                             </div>
                             <div class="hero-actions">
@@ -126,25 +120,19 @@ echo $user_name; ?></span>!</h1>
                         </div>
                         <div class="kpi-content">
                             <h3>Despesas do Mês</h3>
-                            <p class="kpi-value">€<?php
-
-echo number_format($despesas_mes, 2, ',', '.'); ?></p>
+                            <p class="kpi-value">€<?php echo number_format($despesas_mes, 2, ',', '.'); ?></p>
                             <span class="kpi-label">Mês atual</span>
                         </div>
                     </div>
 
                     <div class="kpi-card animate-on-scroll">
                         <div class="kpi-icon success">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M15.5 8.5a4 4 0 1 0 0 7"></path><line x1="7" y1="10" x2="14" y2="10"></line><line x1="7" y1="14" x2="14" y2="14"></line></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                         </div>
                         <div class="kpi-content">
                             <h3>Orçamento Restante</h3>
-                            <p class="kpi-value">€<?php
-
-echo number_format($orcamento_restante, 2, ',', '.'); ?></p>
-                            <span class="kpi-label"><?php
-
-echo $percentual_usado; ?>% do orçamento usado</span>
+                            <p class="kpi-value">€<?php echo number_format($orcamento_restante, 2, ',', '.'); ?></p>
+                            <span class="kpi-label"><?php echo $percentual_usado; ?>% do orçamento usado</span>
                         </div>
                     </div>
 
@@ -154,9 +142,7 @@ echo $percentual_usado; ?>% do orçamento usado</span>
                         </div>
                         <div class="kpi-content">
                             <h3>Economia Mensal</h3>
-                            <p class="kpi-value">€<?php
-
-echo number_format(max(0, $orcamento_total - $despesas_mes), 2, ',', '.'); ?></p>
+                            <p class="kpi-value">€<?php echo number_format(max(0, $orcamento_total - $despesas_mes), 2, ',', '.'); ?></p>
                             <span class="kpi-label">Poupado este mês</span>
                         </div>
                     </div>
@@ -170,22 +156,15 @@ echo number_format(max(0, $orcamento_total - $despesas_mes), 2, ',', '.'); ?></p
                                         <div class="progress-item">
                                             <div class="progress-header">
                                                 <span>Controle de Orçamento</span>
-                                                <span class="progress-percentage"><?php
-
-echo min(100, $percentual_usado); ?>%</span>
+                                                <span class="progress-percentage"><?php echo min(100, $percentual_usado); ?>%</span>
                                             </div>
                                             <div class="progress-bar">
-                                                <div class="progress-fill <?php
-
-echo $percentual_usado > 100 ? 'danger' : ($percentual_usado > 80 ? 'warning' : 'success'); ?>" 
-                                                     style="width: <?php
-
-echo min(100, $percentual_usado); ?>%"></div>
+                                                <div class="progress-fill <?php echo $percentual_usado > 100 ? 'danger' : ($percentual_usado > 80 ? 'warning' : 'success'); ?>" 
+                                                     style="width: <?php echo min(100, $percentual_usado); ?>%"></div>
                                             </div>
                                             <small class="progress-label">
-                                                <?php
-
-if ($percentual_usado > 100) echo 'Orçamento excedido!';
+                                                <?php 
+                                                if ($percentual_usado > 100) echo 'Orçamento excedido!';
                                                 elseif ($percentual_usado > 80) echo 'Próximo do limite';
                                                 else echo 'Dentro do orçamento';
                                                 ?>
@@ -196,9 +175,8 @@ if ($percentual_usado > 100) echo 'Orçamento excedido!';
                                             <div class="progress-header">
                                                 <span>Meta de Poupança</span>
                                                 <span class="progress-percentage">
-                                                    <?php
-
-$meta_poupanca = $orcamento_total * 0.2; // 20% do orçamento
+                                                    <?php 
+                                                    $meta_poupanca = $orcamento_total * 0.2; // 20% do orçamento
                                                     $poupanca_atual = max(0, $orcamento_total - $despesas_mes);
                                                     $percentual_poupanca = $meta_poupanca > 0 ? min(100, round(($poupanca_atual / $meta_poupanca) * 100)) : 0;
                                                     echo $percentual_poupanca;
@@ -206,17 +184,11 @@ $meta_poupanca = $orcamento_total * 0.2; // 20% do orçamento
                                                 </span>
                                             </div>
                                             <div class="progress-bar">
-                                                <div class="progress-fill success" style="width: <?php
-
-echo $percentual_poupanca; ?>%"></div>
+                                                <div class="progress-fill success" style="width: <?php echo $percentual_poupanca; ?>%"></div>
                                             </div>
                                             <small class="progress-label">
-                                                Meta: €<?php
-
-echo number_format($meta_poupanca, 2, ',', '.'); ?> | 
-                                                Atual: €<?php
-
-echo number_format($poupanca_atual, 2, ',', '.'); ?>
+                                                Meta: €<?php echo number_format($meta_poupanca, 2, ',', '.'); ?> | 
+                                                Atual: €<?php echo number_format($poupanca_atual, 2, ',', '.'); ?>
                                             </small>
                                         </div>
 
@@ -244,8 +216,7 @@ echo number_format($poupanca_atual, 2, ',', '.'); ?>
                         <div class="chart-container">
                             <div class="expense-categories">
                                 <?php
-
-if (count($despesas_por_categoria) > 0):
+                                if (count($despesas_por_categoria) > 0):
                                     $total_despesas = array_sum(array_column($despesas_por_categoria, 'total'));
                                     $cores = ['#0b2b47', '#1b6b63', '#b08952', '#7a1f1f', '#123a58'];
                                     foreach ($despesas_por_categoria as $index => $cat):
@@ -254,35 +225,22 @@ if (count($despesas_por_categoria) > 0):
                                 ?>
                                 <div class="category-bar">
                                     <div class="category-label">
-                                        <span class="category-name"><?php
-
-echo htmlentities($cat['categoria']); ?></span>
-                                        <span class="category-amount">€<?php
-
-echo number_format($cat['total'], 2, ',', '.'); ?> (<?php
-
-echo $percentual; ?>%)</span>
+                                        <span class="category-name"><?php echo htmlentities($cat['categoria']); ?></span>
+                                        <span class="category-amount">€<?php echo number_format($cat['total'], 2, ',', '.'); ?> (<?php echo $percentual; ?>%)</span>
                                     </div>
                                     <div class="bar-container">
-                                        <div class="bar-fill" style="width: <?php
-
-echo $percentual; ?>%; background: <?php
-
-echo $cor; ?>;"></div>
+                                        <div class="bar-fill" style="width: <?php echo $percentual; ?>%; background: <?php echo $cor; ?>;"></div>
                                     </div>
                                 </div>
                                 <?php
-
-endforeach;
+                                    endforeach;
                                 else:
                                 ?>
                                 <div style="text-align: center; padding: 2rem; color: var(--gray-500);">
                                     <p>Nenhuma despesa registada este mês.</p>
                                     <a href="despesas.php" class="btn btn-primary" style="margin-top: 1rem;">Adicionar Despesa</a>
                                 </div>
-                                <?php
-
-endif; ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -369,12 +327,8 @@ endif; ?>
                             <div class="col-description">Descrição</div>
                         </div>
                         <div class="table-body">
-                            <?php
-
-if (count($ultimas_despesas) > 0): ?>
-                                <?php
-
-foreach ($ultimas_despesas as $despesa): 
+                            <?php if (count($ultimas_despesas) > 0): ?>
+                                <?php foreach ($ultimas_despesas as $despesa): 
                                     $data_formatada = date('d/m/Y', strtotime($despesa['data']));
                                     $hoje = date('Y-m-d');
                                     $ontem = date('Y-m-d', strtotime('-1 day'));
@@ -389,34 +343,20 @@ foreach ($ultimas_despesas as $despesa):
                                 ?>
                             <div class="table-row">
                                 <div class="col-category">
-                                    <span class="badge badge-blue"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M15.5 8.5a4 4 0 1 0 0 7"></path><line x1="7" y1="10" x2="14" y2="10"></line><line x1="7" y1="14" x2="14" y2="14"></line></svg></span>
-                                    <?php
-
-echo htmlentities($despesa['categoria']); ?>
+                                    <span class="badge badge-blue"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+                                    <?php echo htmlentities($despesa['categoria']); ?>
                                 </div>
-                                <div class="col-amount">€<?php
-
-echo number_format($despesa['valor'], 2, ',', '.'); ?></div>
-                                <div class="col-date"><?php
-
-echo $data_display; ?></div>
-                                <div class="col-description"><?php
-
-echo htmlentities($despesa['descricao'] ?? '-'); ?></div>
+                                <div class="col-amount">€<?php echo number_format($despesa['valor'], 2, ',', '.'); ?></div>
+                                <div class="col-date"><?php echo $data_display; ?></div>
+                                <div class="col-description"><?php echo htmlentities($despesa['descricao'] ?? '-'); ?></div>
                             </div>
-                            <?php
-
-endforeach; ?>
-                            <?php
-
-else: ?>
+                            <?php endforeach; ?>
+                            <?php else: ?>
                             <div style="text-align: center; padding: 2rem; color: var(--gray-500);">
                                 <p>Nenhuma despesa registada ainda.</p>
                                 <a href="despesas.php" class="btn btn-primary" style="margin-top: 1rem;">Adicionar Primeira Despesa</a>
                             </div>
-                            <?php
-
-endif; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -433,6 +373,5 @@ endif; ?>
     <script src="assets/js/main.js?v=3"></script>
 </body>
 </html>
-
 
 

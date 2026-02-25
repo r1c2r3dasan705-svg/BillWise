@@ -37,7 +37,7 @@ if (strlen($nova_senha) < 6) {
 try {
     require_once 'config.php';
     
-    // Buscar senha atual da base de dados
+    // Procurar senha atual da base de dados
     $stmt = $pdo->prepare("SELECT senha FROM utilizadores WHERE id = ?");
     $stmt->execute([$user_id]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);

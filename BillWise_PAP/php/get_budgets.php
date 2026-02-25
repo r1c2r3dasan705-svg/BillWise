@@ -1,5 +1,5 @@
 <?php
-// API para buscar todos os orçamentos do utilizador autenticado
+// API para procurar todos os orçamentos do utilizador autenticado
 header('Content-Type: application/json; charset=UTF-8');
 require_once 'config.php';
 session_start();
@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 
 try {
     $pdo = getPDO();
-    // Buscar orçamentos do utilizador com gasto calculado no mês atual
+    // Procurar orçamentos do utilizador com gasto calculado no mês atual
     $stmt = $pdo->prepare("
         SELECT 
             o.id,

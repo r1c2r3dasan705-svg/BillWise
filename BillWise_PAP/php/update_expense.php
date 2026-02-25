@@ -1,6 +1,6 @@
 <?php
 // API para editar despesa existente - verifica propriedade antes de permitir edição
-header('Content-Type: application/json; charset=UTF-8');
+header('Content-Type: application/json');
 session_start();
 
 // Verificar autenticação
@@ -64,7 +64,7 @@ try {
         $stmt->execute([$valor, $user_id, $categoria]);
     }
     
-    // Buscar despesa atualizada para retornar ao cliente
+    // Procurar despesa atualizada para retornar ao cliente
     $stmt = $pdo->prepare("SELECT * FROM despesas WHERE id = ?");
     $stmt->execute([$expense_id]);
     $updated_expense = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -82,6 +82,5 @@ try {
         'error' => 'Erro ao atualizar despesa'
     ]);
 }
-
 
 

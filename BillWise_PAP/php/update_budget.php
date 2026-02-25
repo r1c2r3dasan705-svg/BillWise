@@ -52,7 +52,7 @@ try {
         exit;
     }
     
-    // Buscar orçamento atualizado para retornar ao cliente
+    // Procurar orçamento atualizado para retornar ao cliente
     $stmt = $pdo->prepare("SELECT * FROM orcamentos WHERE id = ?");
     $stmt->execute([$budget_id]);
     $updated_budget = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -70,5 +70,4 @@ try {
         'error' => 'Erro ao atualizar orçamento'
     ]);
 }
-
 

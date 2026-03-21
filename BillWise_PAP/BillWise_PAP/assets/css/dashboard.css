@@ -1,0 +1,555 @@
+/* estilos para o dashboard do BillWise */
+
+/* Ajustes gerais para o dashboard */
+.help-steps li {
+    margin-bottom: 0.35rem;
+}
+
+.help-actions {
+    max-width: 1200px;
+    margin: 1rem auto 0;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .help-hero h1 {
+        font-size: 1.6rem;
+    }
+}
+
+.help-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.help-card {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.help-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: #eff6ff;
+    color: #1d4ed8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.help-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.help-text {
+    color: #475569;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.help-steps {
+    margin: 0;
+    padding-left: 1rem;
+    color: #334155;
+    line-height: 1.55;
+}
+
+/* Definições de estilo para a seção de configurações e simulador de investimentos */
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem 3rem;
+}
+
+.settings-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.settings-section h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-row {
+    margin-bottom: 1.5rem;
+}
+
+.form-row:last-child {
+    margin-bottom: 0;
+}
+
+.danger-zone {
+    border: 2px solid #ef4444;
+    background: #fef2f2;
+}
+
+.danger-zone h2 {
+    color: #dc2626;
+}
+
+.danger-text {
+    margin-bottom: 1rem;
+    color: #991b1b;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+.success-message {
+    background: #d1fae5;
+    border: 2px solid #10b981;
+    color: #065f46;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.error-message {
+    background: #fee2e2;
+    border: 2px solid #ef4444;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+/* investimentos */
+.simulador-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.investimento-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+}
+
+.tipo-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tipo-opcao {
+    position: relative;
+}
+
+.tipo-opcao input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.tipo-card {
+    padding: 1.25rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    background: var(--gray-50);
+}
+
+.tipo-opcao input:checked + .tipo-card {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(37, 99, 235, 0.02) 100%);
+}
+
+.tipo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tipo-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.tipo-nome {
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 0.25rem;
+}
+
+.tipo-risco {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+}
+
+.periodo-selector {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.periodo-btn {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid var(--gray-200);
+    border-radius: 10px;
+    background: var(--gray-50);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: var(--gray-700);
+    text-align: center;
+}
+
+.periodo-btn:hover {
+    border-color: var(--primary);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.periodo-btn.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.resultado-box {
+    background: linear-gradient(135deg, #0b2b47 0%, #1b6b63 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(11, 43, 71, 0.25);
+    display: none;
+}
+
+.resultado-box.mostrar {
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.resultado-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.resultado-titulo {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.resultado-tipo {
+    background: rgba(255,255,255,0.2);
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.resultado-valores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.resultado-item {
+    text-align: center;
+}
+
+.resultado-label {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    margin-bottom: 0.35rem;
+}
+
+.resultado-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+
+.resultado-value.destaque {
+    color: #10b981;
+}
+
+.crescimento-info {
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.crescimento-titulo {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.crescimento-lista {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.crescimento-ano {
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+}
+
+.crescimento-ano .ano {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.crescimento-ano .valor {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #10b981;
+}
+
+.educativo-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 2rem;
+}
+
+.educativo-titulo {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.educativo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.educativo-item {
+    padding: 1.25rem;
+    border-radius: 12px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+}
+
+.educativo-item h4 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.educativo-item p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.5;
+}
+
+.risco-indicator {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+}
+
+.risco-barra {
+    width: 20px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--gray-300);
+}
+
+.risco-barra.ativa {
+    background: #ef4444;
+}
+
+.risco-barra.ativa.risco-baixo {
+    background: #10b981;
+}
+
+.risco-barra.ativa.risco-medio {
+    background: #f59e0b;
+}
+
+.risco-barra.ativa.risco-alto {
+    background: #ef4444;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .tipo-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .periodo-selector {
+        flex-direction: column;
+    }
+    
+    .resultado-valores {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .crescimento-lista {
+        grid-template-columns: 1fr;
+    }
+    
+.educativo-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilos para formulários e inputs */
+.form-label {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.label-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+.label-icon-lg {
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.form-actions {
+    margin-top: 2rem;
+}
+
+.btn-full {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.educativo-item-title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.educativo-item-title.risco {
+    color: #0b2b47;
+}
+
+.educativo-item-title.rendimento {
+    color: #10b981;
+}
+
+.educativo-item-title.juros {
+    color: #7c3aed;
+}
+
+/* butões */
+.btn-outline {
+    background-color: transparent !important;
+    border: 2px solid var(--primary) !important;
+    color: var(--primary) !important;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+
+/* secção de feedback */
+.feedback-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 3rem;
+}
+
+.feedback-section h2 {
+    margin-bottom: 1.5rem;
+    color: var(--gray-900);
+}
+
+.feedback-section p {
+    margin-bottom: 1.5rem;
+    color: var(--gray-600);
+}
+

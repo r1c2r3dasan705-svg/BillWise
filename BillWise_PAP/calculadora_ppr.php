@@ -14,18 +14,18 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora PPR - BillWise</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/sidebar.css?v=1">
-    <link rel="stylesheet" href="assets/css/buttons.css">
-    <link rel="stylesheet" href="assets/css/forms.css">
-    <link rel="stylesheet" href="assets/css/modals.css">
-    <link rel="stylesheet" href="assets/css/footer.css?v=2">
+    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/barra_lateral.css?v=1">
+    <link rel="stylesheet" href="assets/css/botoes.css">
+    <link rel="stylesheet" href="assets/css/formularios.css">
+    <link rel="stylesheet" href="assets/css/modais.css">
+    <link rel="stylesheet" href="assets/css/rodape.css?v=2">
 </head>
 <body>
     <div class="dashboard-layout">
         <?php
 header('Content-Type: text/html; charset=UTF-8');
-include 'php/sidebar.php'; ?>
+include 'php/barra_lateral.php'; ?>
         <div class="main-content-wrapper">
             <main class="main">
                 <div class="container">
@@ -45,14 +45,14 @@ include 'php/sidebar.php'; ?>
                                     <svg style="display: inline-block; width: 20px; height: 20px; margin-right: 0.5rem; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                     Capital Inicial (€)
                                 </label>
-                                <input type="number" id="initial" value="1000" step="100" min="0" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
+                                <input type="number" id="initial" value="1000" step="0.01" min="0" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
                             </div>
                             <div class="form-group" style="margin-top: 1.5rem;">
                                 <label for="contrib" style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem; display: block;">
                                     <svg style="display: inline-block; width: 20px; height: 20px; margin-right: 0.5rem; vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                     Contribuição Mensal (€)
                                 </label>
-                                <input type="number" id="contrib" value="100" step="10" min="0" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
+                                <input type="number" id="contrib" value="100" step="0.01" min="0" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1rem;">
                             </div>
                             <div class="form-group" style="margin-top: 1.5rem;">
                                 <label for="years" style="font-weight: 600; color: #1e293b; margin-bottom: 0.5rem; display: block;">
@@ -82,9 +82,11 @@ include 'php/sidebar.php'; ?>
         </div>
     </div>
 
-    <script src="assets/js/notifications.js?v=1"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/notificacoes.js?v=1"></script>
+    <script src="assets/js/principal.js"></script>
 </body>
 </html>
+
+
 
 

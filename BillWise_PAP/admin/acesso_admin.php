@@ -1,6 +1,6 @@
 <?php
 // Funcoes de controlo de acesso ao backend administrativo
-require_once __DIR__ . '/../php/config.php';
+require_once __DIR__ . '/../php/configuracao.php';
 
 // Email da conta com privilégios totais de administração.
 define('ADMIN_EMAIL', 'supbillwise@gmail.com');
@@ -90,3 +90,4 @@ function adminCsrfToken() {
 function validateAdminCsrf($token) {
     return !empty($_SESSION['admin_csrf_token']) && hash_equals($_SESSION['admin_csrf_token'], (string)$token);
 }
+

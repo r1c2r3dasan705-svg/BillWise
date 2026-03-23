@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Redirecionar utilizadores autenticados para o painel principal
 if (isset($_SESSION['user_id'])) {
-    header('Location: dashboard.php');
+header('Location: painel.php');
     exit;
 }
 
@@ -25,18 +25,19 @@ $panel_open_login = true;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BillWise - Literacia Financeira Simplificada</title>
-    <link rel="stylesheet" href="assets/css/style.css?v=2">
-    <link rel="stylesheet" href="assets/css/header.css?v=2">
-    <link rel="stylesheet" href="assets/css/buttons.css?v=2">
-    <link rel="stylesheet" href="assets/css/forms.css?v=2">
-    <link rel="stylesheet" href="assets/css/modals.css?v=2">
-    <link rel="stylesheet" href="assets/css/footer.css?v=2">
+    <link rel="stylesheet" href="assets/css/estilo.css?v=2">
+    <link rel="stylesheet" href="assets/css/cabecalho.css?v=2">
+    <link rel="stylesheet" href="assets/css/botoes.css?v=2">
+    <link rel="stylesheet" href="assets/css/formularios.css?v=2">
+    <link rel="stylesheet" href="assets/css/modais.css?v=3">
+    <link rel="stylesheet" href="assets/css/rodape.css?v=2">
+    <link rel="stylesheet" href="assets/css/pagina_inicial.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <?php
 
-include 'php/header.php'; ?>
+include 'php/cabecalho.php'; ?>
     <main id="main" class="main">
         <div class="container">
             <!-- Hero Intro Section -->
@@ -137,12 +138,11 @@ endif; ?>
                     </div>
                 </div>
             </section>
-
             <!-- Features Section -->
             <section class="features-section">
                 <div class="container">
                     <div class="section-header">
-                        <h2>As suas finanças simplificadas</h2>
+                        <h2>As suas finanças, simplificadas</h2>
                         <p>Desvalore tudo em funcionalidades que o libertam transferir a sua educação com o clima</p>
                     </div>
                         <div class="features-grid">
@@ -267,7 +267,7 @@ if ($panel_open_login): ?>
                             <?php
 
 else: ?>
-                                <a href="dashboard.php" class="btn btn-primary">Ir para o Painel</a>
+href="painel.php" class="btn btn-primary">Ir para o Painel
                             <?php
 
 endif; ?>
@@ -287,7 +287,7 @@ endif; ?>
 
     <?php
 
-include 'php/footer.php'; ?>
+include 'php/rodape.php'; ?>
 
     <!-- AUTH MODAL -->
     <div id="auth-modal" class="modal">
@@ -298,79 +298,176 @@ include 'php/footer.php'; ?>
             </div>
             <!-- Modal Login (Default) -->
             <div class="modal-body" style="padding:1.5rem;">
-                <form id="login-form" style="display:block;">
+                <form id="login-form">
                     <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required></div>
                     <div class="form-group"><label for="password">Senha</label><input type="password" id="password" name="password" required></div>
-                    <div class="form-actions"><button class="btn btn-secondary" type="button" id="show-register">Ainda não tem conta?</button><button class="btn btn-primary" type="submit">Entrar</button></div>
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <button type="button" id="show-recover" style="background: transparent !important; border: none !important; color: #dc2626 !important; font-size: 14px !important; font-weight: 600 !important; text-decoration: underline !important; cursor: pointer !important; padding: 8px 12px !important; display: inline-block !important; width: auto !important;">Esqueci a password</button>
+                    </div>
+                    <div class="form-actions" style="margin-top: 5px;">
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-start !important;">
+                            <button class="btn btn-secondary" type="button" id="show-register">Ainda não tem conta?</button>
+                            <button class="btn btn-primary" type="submit">Entrar</button>
+                        </div>
+                    </div>
                 </form>
                 <!-- Modal de Registro (Escondido) -->
-                <form id="register-form" style="display:none;">
+                <form id="register-form" class="auth-form" style="display:none;">
                     <div class="form-group"><label for="nome">Nome</label><input type="text" id="nome" name="nome" required></div>
                     <div class="form-group"><label for="reg-email">Email</label><input type="email" id="reg-email" name="email" required></div>
                     <div class="form-group"><label for="reg-password">Senha</label><input type="password" id="reg-password" name="password" required></div>
                     <div class="form-actions"><button class="btn btn-secondary" type="button" id="show-login">Já tenho conta</button><button class="btn btn-primary" type="submit">Registar</button></div>
                 </form>
-            </div>
-        </div>
-    </div>
 
-    <!-- Modal de Acesso Restrito -->
-    <div id="restricted-modal" class="modal">
-        <div class="modal-content restricted-modal-content">
-            <button class="close-btn" id="restricted-close">&times;</button>
-            <div class="modal-body">
-                <div class="restricted-content">
-                    <div class="restricted-icon">
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="40" cy="40" r="40" fill="#FEF3C7"/>
-                            <path d="M40 20C32.268 20 26 26.268 26 34v4h-2a4 4 0 0 0-4 4v18a4 4 0 0 0 4 4h32a4 4 0 0 0 4-4V42a4 4 0 0 0-4-4h-2v-4c0-7.732-6.268-14-14-14zm0 4c5.514 0 10 4.486 10 10v4H30v-4c0-5.514 4.486-10 10-10zm0 20a4 4 0 1 1 0 8 4 4 0 0 1 0-8z" fill="#F59E0B"/>
-                        </svg>
+                <!-- Password Recovery - Step 1: Email -->
+                <form id="recover-email-form" class="auth-form" style="display:none;">
+                    <p style="margin-bottom: 1rem; color: var(--gray-600); font-size: 0.9rem;">Introduza o seu email para receber um código de recuperação.</p>
+                    <div class="form-group"><label for="recover-email">Email</label><input type="email" id="recover-email" name="email" required placeholder="Introduza o seu email"></div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" type="button" id="back-to-login">Voltar ao Login</button>
+                        <button class="btn btn-primary" type="submit">Enviar Código</button>
                     </div>
-                    <h3>Conteúdo Exclusivo para Membros</h3>
-                    <p>Para aceder a esta funcionalidade e gerir as suas finanças, precisa de ter uma conta BillWise.</p>
-                    <div class="restricted-benefits">
-                        <div class="benefit-item">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7 10l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>Gestão completa de despesas</span>
+                </form>
+
+                <!-- Password Recovery - Step 2: Code + New Password -->
+<form id="recover-code-form" class="auth-form" style="display:none;">
+
+                    <p style="margin-bottom: 1rem; color: var(--gray-600); font-size: 0.9rem;">Introduza o código de 6 dígitos enviado para o seu email.</p>
+                    <div class="form-group">
+                        <label>Código</label>
+                        <div class="code-input-group" style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 0.5rem;">
+                            <input type="text" class="code-input-modal" maxlength="1" data-index="0" required style="width: 40px; height: 45px; text-align: center; font-size: 1.25rem; font-weight: bold; border: 2px solid var(--gray-300); border-radius: 8px;">
+                            <input type="text" class="code-input-modal" maxlength="1" data-index="1" required style="width: 40px; height: 45px; text-align: center; font-size: 1.25rem; font-weight: bold; border: 2px solid var(--gray-300); border-radius: 8px;">
+                            <input type="text" class="code-input-modal" maxlength="1" data-index="2" required style="width: 40px; height: 45px; text-align: center; font-size: 1.25rem; font-weight: bold; border: 2px solid var(--gray-300); border-radius: 8px;">
+                            <input type="text" class="code-input-modal" maxlength="1" data-index="3" required style="width: 40px; height: 45px; text-align: center; font-size: 1.25rem; font-weight: bold; border: 2px solid var(--gray-300); border-radius: 8px;">
+                            <input type="text" class="code-input-modal" maxlength="1" data-index="4" required style="width: 40px; height: 45px; text-align: center; font-size: 1.25rem; font-weight: bold; border: 2px solid var(--gray-300); border-radius: 8px;">
+                            <input type="text" class="code-input-modal" maxlength="1" data-index="5" required style="width: 40px; height: 45px; text-align: center; font-size: 1.25rem; font-weight: bold; border: 2px solid var(--gray-300); border-radius: 8px;">
                         </div>
-                        <div class="benefit-item">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7 10l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>Orçamentos personalizados</span>
-                        </div>
-                        <div class="benefit-item">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M7 10l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>Simulador de investimentos</span>
-                        </div>
+                        <input type="hidden" id="recover-codigo" name="codigo">
                     </div>
-                    <div class="restricted-actions">
-                        <button class="btn btn-primary" id="restricted-login">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 11a4 4 0 100-8 4 4 0 000 8zM3 18a7 7 0 0114 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            Fazer Login
-                        </button>
-                        <button class="btn btn-secondary" id="restricted-register">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 5v10m-5-5h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                            Criar Conta Grátis
-                        </button>
+                    <div class="form-group"><label for="recover-nova-senha">Nova Password</label><input type="password" id="recover-nova-senha" name="nova_senha" required minlength="6" placeholder="Mínimo 6 caracteres"></div>
+                    <div class="form-group"><label for="recover-confirmar-senha">Confirmar Password</label><input type="password" id="recover-confirmar-senha" name="confirmar_senha" required minlength="6" placeholder="Confirme a password"></div>
+                    <div class="form-actions">
+                        <button class="btn btn-secondary" type="button" id="back-to-recover-email">Voltar</button>
+                        <button class="btn btn-primary" type="button" id="submit-recover-code">Alterar Password</button>
                     </div>
+                </div>
+
+                <!-- Password Recovery - Step 3: Success -->
+                <div id="recover-success" class="auth-form" style="display:none; text-align: center; padding: 1rem;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </div>
+                    <h3 style="margin-bottom: 0.5rem; color: var(--gray-900);">Password Alterada!</h3>
+                    <p style="margin-bottom: 1.5rem; color: var(--gray-600); font-size: 0.9rem;">A sua password foi alterada com sucesso.</p>
+                    <button class="btn btn-primary" type="button" id="go-to-login" style="width: 100%;">Voltar ao Login</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="assets/js/notifications.js?v=1"></script>
-    <script src="assets/js/main.js"></script>
+
+
+    <script>
+        // navegação das tabs e acordeão FAQ
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const sections = document.querySelectorAll('.page-section');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // remover classe ativa de todos os botões e resetar estilos
+                    tabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.style.color = '#64748b';
+                        b.style.borderBottom = 'none';
+                    });
+                    // adicionar classe ativa ao botão clicado e aplicar estilos
+                    btn.classList.add('active');
+                    btn.style.color = '#2563eb';
+                    btn.style.borderBottom = '2px solid #2563eb';
+
+                    // esconder todas as seções
+                    sections.forEach(section => section.classList.remove('active'));
+
+                    // mostrar a seção correspondente ao botão clicado
+                    const tabId = btn.getAttribute('data-tab');
+                    const targetSection = document.getElementById(tabId);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+
+            // Acordeão FAQ
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isOpen = answer.style.display === 'block';
+                    // Fechar todas as respostas
+                    document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = 'none');
+                    // Abrir a resposta da pergunta clicada se não estiver aberta
+                    if (!isOpen) {
+                        answer.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="assets/js/notificacoes.js?v=1"></script>
+<script>
+function handleCodeSubmit() {
+  console.log('BUTTON CLICKED!');
+  const codigo = document.getElementById('recover-codigo').value;
+  const novaSenha = document.getElementById('recover-nova-senha').value;
+  const confirmarSenha = document.getElementById('recover-confirmar-senha').value;
+  const recoverEmail = window.recoverEmailGlobal || '';
+  
+  console.log('SUBMIT DATA:', {codigo, novaSenha: novaSenha.length, email: recoverEmail});
+  
+  if (codigo.length !== 6) {
+    alert('Código deve ter 6 dígitos!');
+    return;
+  }
+  if (novaSenha !== confirmarSenha) {
+    alert('Passwords não coincidem!');
+    return;
+  }
+  if (novaSenha.length < 6) {
+    alert('Password mínimo 6 chars!');
+    return;
+  }
+  
+  fetch('php/redefinir_password.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    credentials: 'same-origin',
+    body: JSON.stringify({email: recoverEmail, codigo, nova_senha: novaSenha})
+  })
+  .then(r => r.json())
+  .then(result => {
+    console.log('RESPONSE:', result);
+    if (result.success) {
+      document.getElementById('recover-code-form').style.display = 'none';
+      document.getElementById('recover-success').style.display = 'block';
+    } else {
+      alert('Erro: ' + result.error);
+    }
+  })
+  .catch(e => {
+    console.error(e);
+    alert('Erro de rede: ' + e.message);
+  });
+}
+</script>
+<script src="assets/js/notificacoes.js?v=1"></script>
+<script src="assets/js/principal.js?v=3"></script>
 </body>
 </html>
+
+
 
 
 

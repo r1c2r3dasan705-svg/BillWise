@@ -1,0 +1,336 @@
+/* Estilos para as páginas de Sobre e FAQ, além de ajustes específicos para a página inicial e formulários */
+
+/* Estilos para a seção "Sobre Nós" */
+.about-hero {
+    text-align: center;
+    padding: 3rem 0 2rem;
+    margin-bottom: 2rem;
+}
+
+.about-hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+}
+
+.about-hero p {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f4f7fb 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+    border: 1px solid var(--border-soft);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.about-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+    border-color: rgba(11, 43, 71, 0.2);
+}
+
+.about-card:hover::before {
+    opacity: 1;
+}
+
+.about-card-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.85rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 20px rgba(11, 43, 71, 0.18);
+}
+
+.about-card-icon.primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.about-card-icon.secondary {
+    background: linear-gradient(135deg, var(--secondary), #145a52);
+}
+
+.about-card-icon.accent {
+    background: linear-gradient(135deg, var(--accent), #946f3c);
+}
+
+.about-card-icon.success {
+    background: linear-gradient(135deg, var(--success), #0d9668);
+}
+
+.about-card h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+}
+
+.about-card p {
+    color: var(--gray-700);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.about-contact {
+    margin-top: 3rem;
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(11, 43, 71, 0.06) 0%, rgba(27, 107, 99, 0.08) 100%);
+    border-radius: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-contact h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+}
+
+.about-contact p {
+    color: var(--gray-600);
+    margin-bottom: 1.5rem;
+}
+
+.about-contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 6px 20px rgba(11, 43, 71, 0.25);
+}
+
+.about-contact-email:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(11, 43, 71, 0.35);
+    text-decoration: none;
+}
+
+/* Estilos para a seção de FAQ */
+.faq-header-section {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.faq-header-section h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 1rem;
+}
+
+.faq-header-section p {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: linear-gradient(135deg, #ffffff 0%, #f4f7fb 100%);
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    border: 1px solid var(--border-soft);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-item:hover {
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+    transform: translateY(-2px);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1.5rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--gray-900);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: all 0.2s ease;
+}
+
+.faq-question:hover {
+    color: var(--primary);
+}
+
+.faq-question::after {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    font-weight: 600;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+    transform: rotate(45deg);
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+}
+
+.faq-answer {
+    padding: 0 1.5rem 1.5rem;
+    display: none;
+    color: var(--gray-700);
+    line-height: 1.7;
+    font-size: 1rem;
+    border-top: 1px solid var(--border-soft);
+    padding-top: 1rem;
+    margin-top: 0;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+    animation: fadeInUp 0.4s ease;
+}
+
+.faq-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(11, 43, 71, 0.1), rgba(27, 107, 99, 0.1));
+    border-radius: 10px;
+    margin-right: 0.75rem;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.faq-question-text {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Seccão de contato na página de FAQ */
+.faq-contact {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(11, 43, 71, 0.06) 0%, rgba(27, 107, 99, 0.08) 100%);
+    border-radius: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.faq-contact p {
+    font-size: 1.1rem;
+    color: var(--gray-700);
+    margin-bottom: 1rem;
+}
+
+/* Formulário de contato na página de FAQ */
+.faq-contact-form {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 3rem;
+}
+
+.faq-contact-form h2 {
+    margin-bottom: 0.5rem;
+    color: var(--gray-900);
+}
+
+.faq-contact-form p {
+    margin-bottom: 1.5rem;
+    color: var(--gray-600);
+}
+
+/* Estilos para a página inicial - ajustes específicos */
+.page-section:not(.active) { 
+    display: none; 
+}
+
+.tab-btn.active { 
+    color: #2563eb !important; 
+    border-bottom: 2px solid #2563eb !important; 
+}
+
+/* Estilos para formulários na página de FAQ */
+.btn-outline {
+    background-color: transparent !important;
+    border: 2px solid var(--primary) !important;
+    color: var(--primary) !important;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+
